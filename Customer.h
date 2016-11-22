@@ -9,3 +9,5 @@ public:
 
 	void writeReview();
 };
+
+//basszuk el a kódot lol
