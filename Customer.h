@@ -1,3 +1,7 @@
+
+#include "GuestBook.h"
+#include "Plays.h"
+
 class Customer {
 
 private:

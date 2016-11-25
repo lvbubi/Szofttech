@@ -11,7 +11,8 @@ SOURCES += main.cpp \
     Payment.cpp \
     Plays.cpp \
     Review.cpp \
-    Ticket.cpp
+    Ticket.cpp \
+    Play.cpp
 
 DISTFILES += \
     Szinhaz.pro.user \
@@ -24,7 +25,7 @@ HEADERS += \
     Director.h \
     GuestBook.h \
     Payment.h \
-    Play.h \
     Plays.h \
     Review.h \
-    Ticket.h
+    Ticket.h \
+    Play.h

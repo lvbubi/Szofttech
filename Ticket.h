@@ -1,3 +1,6 @@
+#include "Play.h"
+
+
 class Ticket {
 
 private:
@@ -5,8 +8,11 @@ private:
 	int row;
 	int column;
 	Play* play;
+    string date;
 
 public:
+    Ticket();
+    Ticket(int row, int column, Play*play, string date);
 	int getPrice();
 
 	void setPrice(int price);

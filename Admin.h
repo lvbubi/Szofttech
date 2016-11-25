@@ -1,3 +1,6 @@
+#include "GuestBook.h"
+#include "Plays.h"
+
 class Admin {
 
 private:

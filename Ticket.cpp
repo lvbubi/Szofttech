@@ -1,5 +1,16 @@
 #include "Ticket.h"
 
+Ticket::Ticket()
+{
+
+}
+
+Ticket::Ticket(int row, int column, Play *play, string date)
+    :row(row),column(column),play(play),date(date)
+{
+    //price=play->getPrice();
+}
+
 int Ticket::getPrice() {
 	return this->price;
 }

@@ -1,3 +1,6 @@
+#include <list>
+#include "C_Datas.h"
+using namespace std;
 class Payment {
 
 private:
