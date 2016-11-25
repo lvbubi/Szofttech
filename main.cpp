@@ -1,11 +1,18 @@
 #include <iostream>
-
+#include <vector>
+#include <string>
+#include <fstream>
+#include "Plays.h"
 using namespace std;
 
-int main(int argc, char *argv[])
+int main()
 {
-    cout << "Hello World!" << endl;
-    cout<<"asdasdasd";
+    Plays aztakurva;
+
+
+
+
+
 
 //    ░░░░░▄▄▄▄▀▀▀▀▀▀▀▀▄▄▄▄▄▄░░░░░░░
 //    ░░░░░█░░░░▒▒▒▒▒▒▒▒▒▒▒▒░░▀▀▄░░░░

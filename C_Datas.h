@@ -1,3 +1,8 @@
+#include <string>
+
+using namespace std;
+
+
 class C_Datas {
 
 public:
