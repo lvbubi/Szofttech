@@ -8,8 +8,8 @@ using namespace std;
 int main()
 {
     Plays aztakurva;
-
-
+	int asd;
+	cin >> asd;
 
 
 
