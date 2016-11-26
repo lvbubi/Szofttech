@@ -9,14 +9,14 @@ private:
     //a szindarabban nem tarolunk jegyeket, idopontot, a szindarab fuggetlen dolog
     string name; //eloadas neve
     int price;  // ????? Ez mi ez lol ???
-    int cost;   // eloadas koltsege
-    int income; // bevetel
+    int cost;   // eloadas koltsege EZ CSAK AZ IGAZGATORA VONATKOZIK
+    int income; // bevetel EZ IS CSAK AZ IGAZGATORA VONATKOZIK
     string data; // eloadas rovid leirasa
 
 public:
     Play(const string &name,int price, int cost,int income,const string &data);
     Play();
-
+	void PlayKiir()const;
     string getName() const;
     int getPrice() const;
     int getCost() const;

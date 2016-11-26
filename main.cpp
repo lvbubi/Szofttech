@@ -20,8 +20,8 @@ int main()
 
 
 
-    plays.listPlays(); //Szidarabok kiirasa
-
+    plays.listSzindarabok(); //Szidarabok kiirasa
+	plays.listPlays();
 	int asd;
 	cin >> asd;
 

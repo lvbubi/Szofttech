@@ -63,3 +63,10 @@ Play::Play()
 {
 
 }
+
+void Play::PlayKiir() const
+{
+		cout<< "Name: " << name << " "
+		<< "Price: " << price << " "
+		<< "Short description: " << data << endl;
+}

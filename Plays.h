@@ -23,13 +23,15 @@ class Plays{
 private:
     vector<Eloadas> plays;
     vector<Play> szindarabok;//itt eltaroljuk az osszes eloadast ami van, egy szindarabok fajbol beolvassuk majd
-
+	void szindarabok_beolvas();
+	void eloadasok_beolvas();
 public:
 
     Plays();
-	void listPlays();
+	void listSzindarabok()const;//a listazas csak az altalanos adatokat tartalmazza, az arak meg ezek majd az igazgatora vonatkoznak pl
+	void listPlays()const;
     void addPlay(Play & play);
-
+	
 	Play* selectPlay();
 };
 
