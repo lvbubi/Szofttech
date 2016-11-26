@@ -1,6 +1,6 @@
 #ifndef REVIEW_H
 #define REVIEW_H
-
+#include<iostream>
 #include <string>
 using namespace std;
 class Review {
@@ -14,10 +14,10 @@ private:
 public:
     Review(const string& name,const string&label,const string& comment);
 	bool getChecked();
-
 	void setChecked(bool checked);
     string getName() const;
     string getLabel() const;
     string getComment() const;
+    void print();
 };
 #endif //REVIEW_H
