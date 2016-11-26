@@ -9,7 +9,7 @@ class Plays{
 
 struct Eloadas{
     Play* play;
-    vector<vector<Ticket>> tickets;
+    vector<vector<Ticket>> tickets; //kicst sem bonyolult aaaahh nem
     vector<vector<int>> spaces;
     int free_spaces;
     string date;
@@ -23,6 +23,7 @@ public:
 
     Plays();
 	void listPlays();
+    void addPlay(Play & play);
 
 	Play* selectPlay();
 };

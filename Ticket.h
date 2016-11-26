@@ -4,10 +4,10 @@
 class Ticket {
 
 private:
-	int price;
-	int row;
-	int column;
-	Play* play;
+    int price;
+    int row;
+    int column;
+    Play* play;
     string date;
 
 public:

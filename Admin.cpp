@@ -5,7 +5,8 @@ void Admin::checkReviews() {
 }
 
 void Admin::addPlay() {
-	throw "Not yet implemented";
+
+
 }
 
 void Admin::removePlay() {

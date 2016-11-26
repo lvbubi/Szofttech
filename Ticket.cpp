@@ -37,4 +37,5 @@ void Ticket::setColumn(int column) {
 
 void Ticket::getDatas() {
 	throw "Not yet implemented";
+    //ezzel milyen adatokat szerettunk volna lekerni ?
 }

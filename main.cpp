@@ -3,38 +3,30 @@
 #include <string>
 #include <fstream>
 #include "Plays.h"
+#include <string>
+//#include "Admin.h"
+
+//javaslom a build mappaba berakni txt-ket
+
 using namespace std;
 
 int main()
 {
-<<<<<<< HEAD
-    cout << "Hello World!" << endl;
-    cout<<"asdasdasd";
-    cout << "Hello" << endl;
-=======
-    Plays aztakurva;
-	int asd;
-	cin >> asd;
+    //Admin admin;
+    Plays plays;
+    cout << "SzinhazApp: " << endl;
+    cout << "----------- \n" << endl;
 
 
 
 
-//    ░░░░░▄▄▄▄▀▀▀▀▀▀▀▀▄▄▄▄▄▄░░░░░░░
-//    ░░░░░█░░░░▒▒▒▒▒▒▒▒▒▒▒▒░░▀▀▄░░░░
-//    ░░░░█░░░▒▒▒▒▒▒░░░░░░░░▒▒▒░░█░░░
-//    ░░░█░░░░░░▄██▀▄▄░░░░░▄▄▄░░░░█░░
-//    ░▄▀▒▄▄▄▒░█▀▀▀▀▄▄█░░░██▄▄█░░░░█░
-//    █░▒█▒▄░▀▄▄▄▀░░░░░░░░█░░░▒▒▒▒▒░█
-//    █░▒█░█▀▄▄░░░░░█▀░░░░▀▄░░▄▀▀▀▄▒█
-//    ░█░▀▄░█▄░█▀▄▄░▀░▀▀░▄▄▀░░░░█░░█░
-//    ░░█░░░▀▄▀█▄▄░█▀▀▀▄▄▄▄▀▀█▀██░█░░
-//    ░░░█░░░░██░░▀█▄▄▄█▄▄█▄████░█░░░
-//    ░░░░█░░░░▀▀▄░█░░░█░█▀██████░█░░
-//    ░░░░░▀▄░░░░░▀▀▄▄▄█▄█▄█▄█▄▀░░█░░
-//    ░░░░░░░▀▄▄░▒▒▒▒░░░░░░░░░░▒░░░█░
-//    ░░░░░░░░░░▀▀▄▄░▒▒▒▒▒▒▒▒▒▒░░░░█░
-//    ░░░░░░░░░░░░░░▀▄▄▄▄▄░░░░░░░░█░░
+    plays.listPlays(); //Szidarabok kiirasa
 
->>>>>>> origin/master
+
+
+
+
+
+
     return 0;
 }
