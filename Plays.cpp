@@ -63,41 +63,40 @@ void Plays::szindarabok_beolvas()
 
 void Plays::eloadasok_beolvas()
 {
+		ifstream bemenet("terem.txt");
+		string eloadas_nev;
+
+		if (bemenet.is_open())//helyek beolvasasa, jegyek hozzadasa a megfelelo helyhez.
+		{
+			while (!bemenet.eof()) {
+				Eloadas eloadas;//egy random eloadas, beolvasod/feltoltod random adatokkal a teszteleshez, a helyeket mar beolvassa
+				int i;
+				//Teemo_halala
+				eloadas.play = nullptr;
+				eloadas.free_spaces = 666;
+				bemenet >> eloadas_nev;
+				i = 0;
+				for (int i = 0; i < szindarabok.size(); i++)//itt gecisokat szoptam... foreachnél elszállt mert a for után az ideiglenes változó eltûnik, azt az pointert nem ajánlot hozzáadni -.-
+					if (szindarabok[i].getName() == eloadas_nev) {
+						eloadas.play = &szindarabok[i];
+						break;
+					}
+
+				if (eloadas.play == nullptr) {
+					eloadas.play = &szindarabok[0];
+					cout << "\n\nAz eloadast nem lehetet beazonosítani, így a 0. eloadast kapta meg." << endl << endl;
+				}
+
+				bemenet >> eloadas.date;
+				jegyek_helyek_beolvas(bemenet, eloadas);
+				plays.push_back(eloadas);
 
 
-    ifstream bemenet("terem.txt");
-    string eloadas_nev;
-
-    if (bemenet.is_open())//helyek beolvasasa, jegyek hozzadasa a megfelelo helyhez.
-    {
-        while (!bemenet.eof()) {
-            Eloadas eloadas;//egy random eloadas, beolvasod/feltoltod random adatokkal a teszteleshez, a helyeket mar beolvassa
-            int i;
-            //Teemo_halala
-            eloadas.play = nullptr;
-            eloadas.free_spaces = 666;
-            bemenet >> eloadas_nev;
-            i = 0;
-            for (int i = 0; i < szindarabok.size(); i++)//itt gecisokat szoptam... foreachnél elszállt mert a for után az ideiglenes változó eltûnik, azt az pointert nem ajánlot hozzáadni -.-
-                            if (szindarabok[i].getName() == eloadas_nev) {
-                                eloadas.play = &szindarabok[i];
-                                break;
-                            }
-
-            if (eloadas.play == nullptr){
-                eloadas.play=&szindarabok[0];
-                cout<<"\n\nAz eloadast nem lehetet beazonosítani, így a 0. eloadast kapta meg."<<endl<<endl;
-            }
-
-                bemenet >> eloadas.date;
-                jegyek_helyek_beolvas(bemenet,eloadas);
-                plays.push_back(eloadas);
-
-
-        }
-        bemenet.close();
-    }
-    plays.pop_back();//az utolsot ketszer adja hozza, vagy javitom vagy marad igy :D
+			}
+			bemenet.close();
+		}
+		plays.pop_back();//az utolsot ketszer adja hozza, vagy javitom vagy marad igy :D
+	
 }
 
 void Plays::jegyek_helyek_beolvas(ifstream &bemenet, Eloadas &eloadas)
