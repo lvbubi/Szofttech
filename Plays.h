@@ -25,6 +25,7 @@ private:
     vector<Play> szindarabok;//itt eltaroljuk az osszes eloadast ami van, egy szindarabok fajbol beolvassuk majd
 	void szindarabok_beolvas();
 	void eloadasok_beolvas();
+	void jegyek_helyek_beolvas(ifstream &bemenet, Eloadas &eloadas);
 public:
 
     Plays();
