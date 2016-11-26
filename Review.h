@@ -1,3 +1,6 @@
+#ifndef REVIEW_H
+#define REVIEW_H
+
 #include <string>
 using namespace std;
 class Review {
@@ -13,3 +16,4 @@ public:
 
 	void setChecked(bool checked);
 };
+#endif //REVIEW_H

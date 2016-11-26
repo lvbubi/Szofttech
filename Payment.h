@@ -1,3 +1,6 @@
+#ifndef PAYMENT_H
+#define PAYMENT_H
+
 #include <list>
 #include "C_Datas.h"
 using namespace std;
@@ -9,3 +12,6 @@ private:
 public:
 	bool Pay(C_Datas checkID);
 };
+
+
+#endif //PAYMENT_H

@@ -1,3 +1,6 @@
+#ifndef C_DATAS_H
+#define C_DATAS_H
+
 #include <string>
 
 using namespace std;
@@ -11,3 +14,4 @@ public:
 	string account_number;
 	string password;
 };
+#endif //C_DATAS_H

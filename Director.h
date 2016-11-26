@@ -1,4 +1,5 @@
-
+#ifndef DIRECTOR_H
+#define DIRECTOR_H
 #include "Plays.h"
 
 class Director {
@@ -15,3 +16,5 @@ public:
 
 	void listPlaysBy(string& mode);
 };
+
+#endif //DIRECTOR_H

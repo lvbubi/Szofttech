@@ -1,5 +1,6 @@
 #include "Admin.h"
 
+
 void Admin::checkReviews() {
 	throw "Not yet implemented";
 }

@@ -1,3 +1,6 @@
+#ifndef TICKET_H
+#define TICKET_H
+
 #include "Play.h"
 
 
@@ -27,3 +30,4 @@ public:
 
 	void getDatas();
 };
+#endif //TICKET_H

@@ -1,19 +1,24 @@
+#ifndef PLAYS_H
+#define PLAYS_H
+
 #include <vector>
 #include <fstream>
 #include "Play.h"
 #include "Ticket.h"
 #include <iostream>
 using namespace std;
+struct Eloadas {
+	Play* play;
+	vector<vector<Ticket>> tickets; //kicst sem bonyolult aaaahh nem
+	vector<vector<int>> spaces;
+	int free_spaces;
+	string date;
+};
+
 
 class Plays{
 
-struct Eloadas{
-    Play* play;
-    vector<vector<Ticket>> tickets; //kicst sem bonyolult aaaahh nem
-    vector<vector<int>> spaces;
-    int free_spaces;
-    string date;
-};
+
 
 private:
     vector<Eloadas> plays;
@@ -27,3 +32,5 @@ public:
 
 	Play* selectPlay();
 };
+
+#endif //PLAYS_H

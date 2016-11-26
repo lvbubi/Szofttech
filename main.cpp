@@ -4,7 +4,7 @@
 #include <fstream>
 #include "Plays.h"
 #include <string>
-//#include "Admin.h"
+#include "Admin.h"
 
 //javaslom a build mappaba berakni txt-ket
 
@@ -22,8 +22,8 @@ int main()
 
     plays.listPlays(); //Szidarabok kiirasa
 
-
-
+	int asd;
+	cin >> asd;
 
 
 

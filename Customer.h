@@ -1,4 +1,5 @@
-
+#ifndef CUSTOMER_H
+#define CUSTOMER_H
 #include "GuestBook.h"
 #include "Plays.h"
 
@@ -15,3 +16,4 @@ public:
 };
 
 //basszuk el a kódot lol
+#endif //CUSTOMER_H

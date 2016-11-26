@@ -1,3 +1,6 @@
+#ifndef GUESTBOOK_H
+#define GUESTBOOK_H
+
 #include <list>
 #include "Review.h"
 using namespace std;
@@ -9,3 +12,4 @@ private:
 public:
 	void listReviews();
 };
+#endif //GUESTBOOK_H

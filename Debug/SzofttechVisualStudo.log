@@ -1,13 +1,6 @@
-﻿  Ticket.cpp
-  Review.cpp
-  Plays.cpp
-  Play.cpp
-  Payment.cpp
-  main.cpp
-  GuestBook.cpp
-  Director.cpp
-  Customer.cpp
-  Admin.cpp
+﻿  Admin.cpp
   Generating Code...
+  Skipping... (no relevant changes detected)
+  main.cpp
   SzofttechVisualStudo.vcxproj -> C:\Users\lvbubi\Documents\GitHub\Szofttech\Debug\SzofttechVisualStudo.exe
   SzofttechVisualStudo.vcxproj -> C:\Users\lvbubi\Documents\GitHub\Szofttech\Debug\SzofttechVisualStudo.pdb (Partial PDB)
