@@ -35,7 +35,7 @@ protected:
 
 	void listEloadas(const Eloadas & eloadas)const;
 	void listEloadasok(const list<Eloadas> &eloadasok)const;
-	bool friend operator< (const Play& lhs, const Play& rhs) { return (lhs.getName() < rhs.getName()); }
+	bool friend operator< (const Play& lhs, const Play& rhs);
 public:
 	Plays();
 	map<Play, list<Eloadas>> &getTarolo();

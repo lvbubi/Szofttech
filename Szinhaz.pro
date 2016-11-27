@@ -32,3 +32,8 @@ HEADERS += \
     Ticket.h \
     Play.h \
     colorize.h
+
+OTHER_FILES += \
+    bank_accounts.txt \
+    szindarabok.txt \
+    terem.txt

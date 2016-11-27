@@ -149,3 +149,8 @@ void Plays::addPlay(Play &play)
 {
 
 }
+
+bool operator<(const Play & lhs, const Play & rhs)
+{
+	return (lhs.getName() < rhs.getName());
+}
