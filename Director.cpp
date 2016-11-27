@@ -9,5 +9,7 @@ void Director::login() {
 }
 
 void Director::listPlaysBy(string& mode) {
-	throw "Not yet implemented";
+	vector<Eloadas>* asd = plays->getPlays();
+	
+	for (auto lol : *asd);
 }

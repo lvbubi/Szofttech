@@ -6,7 +6,12 @@ void Admin::checkReviews() {
 }
 
 void Admin::addPlay() {
+	vector<Eloadas>* eloadasok = plays->getPlays();
+	vector<Play> *szindarabok = plays->getSzindarabok();
+	//szindarabok->;
+	//asd->push_back(Eloadas);
 
+	for (auto lol : *eloadasok);
 
 }
 

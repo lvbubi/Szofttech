@@ -27,13 +27,12 @@ private:
 	void eloadasok_beolvas();
 	void jegyek_helyek_beolvas(ifstream &bemenet, Eloadas &eloadas);
 public:
-
+	vector<Eloadas> *getPlays();//DIRECTORNAK HA ELOADASOKAT SZERETNE MODOSITANI
+	vector<Play> *getSzindarabok();//DIRECTORNAK HA SZINDARABOKAT SZERETNE MODOSITANI
     Plays();
 	void listSzindarabok()const;//a listazas csak az altalanos adatokat tartalmazza, az arak meg ezek majd az igazgatora vonatkoznak pl
 	void listPlays()const;
     void addPlay(Play & play);
-	
-	Play* selectPlay();
 };
 
 #endif //PLAYS_H

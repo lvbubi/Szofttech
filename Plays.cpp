@@ -34,9 +34,6 @@ void Plays::addPlay(Play &play)
     szindarabok.push_back(play);
 }
 
-Play* Plays::selectPlay() {
-    throw "Not yet implemented";
-}
 
 void Plays::szindarabok_beolvas()
 {
@@ -124,6 +121,15 @@ void Plays::jegyek_helyek_beolvas(ifstream &bemenet, Eloadas &eloadas)
     }
 }
 
+vector<Eloadas>* Plays::getPlays()
+{
+	return &plays;
+}
+
+vector<Play>* Plays::getSzindarabok()
+{
+	return &szindarabok;
+}
 
 Plays::Plays()
 {

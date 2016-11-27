@@ -5,7 +5,7 @@
 class Director {
 
 private:
-	Play* plays;
+	Plays* plays;
 	string id;
 	string pw;
 
