@@ -5,6 +5,7 @@
 #include "Plays.h"
 #include <string>
 #include "Admin.h"
+#include "Payment.h"
 
 //javaslom a build mappaba berakni txt-ket
 
@@ -58,5 +59,12 @@ int main()
 			cin >> select_menu;
 		}
 	}
+	C_Datas random;
+	random.account_number = "1111-18179-11118-11181";
+	random.password = "FakePassword";
+	random.name = "NevemSenki";
+	random.birthDate = "1999.12.12";
+	Payment fizetes;
+	fizetes.Pay(random, 10000000);
 	return 0;
 }

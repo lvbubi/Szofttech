@@ -1,16 +1,18 @@
 #ifndef PAYMENT_H
 #define PAYMENT_H
-
+#include <fstream>
 #include <list>
+#include <iostream>
 #include "C_Datas.h"
 using namespace std;
 class Payment {
 
 private:
-	list<C_Datas> CustomerDatas;
-
+	list<pair<C_Datas,int>> CustomerDatas;
+	
 public:
-	bool Pay(C_Datas checkID);
+	Payment();
+	bool Pay(const C_Datas &checkID, int money);
 };
 
 

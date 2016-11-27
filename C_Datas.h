@@ -13,5 +13,6 @@ public:
 	string birthDate;
 	string account_number;
 	string password;
+	bool operator ==(const C_Datas &c);
 };
 #endif //C_DATAS_H

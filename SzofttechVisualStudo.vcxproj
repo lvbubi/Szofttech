@@ -116,6 +116,7 @@
   <ItemGroup>
     <ClCompile Include="Admin.cpp" />
     <ClCompile Include="Customer.cpp" />
+    <ClCompile Include="C_Datas.cpp" />
     <ClCompile Include="Director.cpp" />
     <ClCompile Include="GuestBook.cpp" />
     <ClCompile Include="main.cpp" />
