@@ -7,7 +7,7 @@
 #include "Admin.h"
 #include "Payment.h"
 #include <cstdlib>
-
+#include <algorithm>
 #ifdef _WIN32
 #define CLEAR "cls"
 #else //In any other OS
@@ -17,6 +17,7 @@ using namespace std;
 
 int main()
 {
+	
 	//Admin admin;
 	string mainmenu[] = { "Eloadasok megtekintese","Jegyvasarlas","Vendegkonyvbe iras","Fizetes","Kilepes" };
 	Plays plays;

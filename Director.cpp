@@ -9,7 +9,15 @@ void Director::login() {
 }
 
 void Director::listPlaysBy(string& mode) {
-	vector<Eloadas>* asd = plays->getPlays();
-	
-	for (auto lol : *asd);
+	vector<Eloadas>* eloadasok = plays->getPlays();
+	vector<Play> *szindarabok = plays->getSzindarabok();
+	//szindarabok->;
+	//asd->push_back(Eloadas);
+
+	vector<Eloadas> e = *eloadasok;
+	std::sort(e.begin(), e.end(),
+		[](Eloadas const &a, Eloadas const &b) {
+		return a.play->getIncome < b.play->getIncome;
+	});
+	for (auto lol : *eloadasok);
 }

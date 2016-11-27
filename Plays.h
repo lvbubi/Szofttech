@@ -6,6 +6,7 @@
 #include "Play.h"
 #include "Ticket.h"
 #include <iostream>
+#include <algorithm>
 using namespace std;
 struct Eloadas {
 	Play* play;
