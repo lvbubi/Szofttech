@@ -12,10 +12,10 @@ void Admin::addPlay() {
 	//asd->push_back(Eloadas);
 	
 	vector<Eloadas> e = *eloadasok;
-	std::sort(e.begin(), e.end(),
-		[](Eloadas const &a, Eloadas const &b) {
-		return a.play->getIncome < b.play->getIncome;
-	});
+//	std::sort(e.begin(), e.end(),
+//        [&]( Eloadas  a, Eloadas b) {
+//		return a.play->getIncome < b.play->getIncome;
+//	});
 	for (auto lol : *eloadasok);
 
 }
