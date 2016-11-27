@@ -13,6 +13,7 @@ struct Eloadas {
 	vector<vector<Ticket>> tickets; //kicst sem bonyolult aaaahh nem
 	vector<vector<int>> spaces;
 	int free_spaces;
+	int sold_spaces;
 	string date;
 };
 

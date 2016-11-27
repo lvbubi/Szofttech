@@ -53,6 +53,13 @@ void Play::setData(const string &value)
     data = value;
 }
 
+bool Play::operator==(const Play & c)
+{
+	if (name == c.name)
+		return true;
+	return false;
+}
+
 Play::Play(const string &name, int price, int cost, int income, const string &data)
     :name(name),price(price),cost(cost),income(income),data(data)
 {

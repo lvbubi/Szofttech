@@ -100,7 +100,7 @@ void Plays::jegyek_helyek_beolvas(ifstream &bemenet, Eloadas &eloadas)
 {
     string line;
     int i = 0, j = 0;
-
+	eloadas.free_spaces = eloadas.sold_spaces = 0;
     while (!bemenet.eof())
     {
         getline(bemenet, line);
@@ -111,8 +111,12 @@ void Plays::jegyek_helyek_beolvas(ifstream &bemenet, Eloadas &eloadas)
         eloadas.tickets.push_back(vector<Ticket>(line.size()));
 
         for (char c : line) {
-            if (c - '0' == 0)
-                eloadas.tickets[i][j] = Ticket(i, j, eloadas.play, eloadas.date);
+			if (c - '0' == 0) {
+				eloadas.tickets[i][j] = Ticket(i, j, eloadas.play, eloadas.date);
+				eloadas.sold_spaces++;
+			}
+			else
+				eloadas.free_spaces++;
             eloadas.spaces[i][j++] = c - '0';
 
         }

@@ -8,6 +8,7 @@
 #include "Payment.h"
 #include <cstdlib>
 #include <algorithm>
+#include "Director.h"
 #ifdef _WIN32
 #define CLEAR "cls"
 #else //In any other OS
@@ -23,6 +24,9 @@ int main()
 	Plays plays;
 	bool exit = false;
 	int select_menu;
+	Director director(&plays);
+
+	director.showAllStatistics();
 
 	cout << "SzinhazApp: " << endl;
 	cout << "----------- \n" << endl;

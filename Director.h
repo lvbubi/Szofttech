@@ -10,7 +10,11 @@ private:
 	string pw;
 
 public:
-	void showStatictics(Play* play);
+	Director(Plays *plays);
+
+	void showAllStatistics()const;
+
+	void showStatictics(Play* play) const;
 
 	void login();
 
