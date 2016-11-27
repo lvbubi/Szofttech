@@ -6,9 +6,13 @@
 #include <string>
 #include "Admin.h"
 #include "Payment.h"
+#include <cstdlib>
 
-//javaslom a build mappaba berakni txt-ket
-
+#ifdef _WIN32
+#define CLEAR "cls"
+#else //In any other OS
+#define CLEAR "clear"
+#endif
 using namespace std;
 
 int main()
@@ -26,6 +30,7 @@ int main()
 	for (string s : mainmenu)//menu kiirasa
 		cout << s << endl;
 	cin >> select_menu;
+	system(CLEAR);
 	if (select_menu < 5);//Customer customer(&plays,&guestbook);
 
 	while (!exit) {
@@ -55,9 +60,10 @@ int main()
 		}
 		if (!exit) {
 			for (string s : mainmenu)
-				cout << s << endl;
-			cin >> select_menu;
-		}
+                cout << s << endl;
+            cin >> select_menu;
+			system(CLEAR);
+        }
 	}
 	C_Datas random;
 	random.account_number = "1111-18179-11118-11181";

@@ -52,6 +52,9 @@
     <ClCompile Include="C_Datas.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="colorize.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Admin.h">

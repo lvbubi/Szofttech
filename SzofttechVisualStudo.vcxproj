@@ -115,6 +115,7 @@
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Admin.cpp" />
+    <ClCompile Include="colorize.cpp" />
     <ClCompile Include="Customer.cpp" />
     <ClCompile Include="C_Datas.cpp" />
     <ClCompile Include="Director.cpp" />
