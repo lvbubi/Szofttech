@@ -1,3 +1,4 @@
-﻿  Director.cpp
+﻿  main.cpp
+c:\users\lvbubi\documents\github\szofttech\main.cpp(39): warning C4390: ';': empty controlled statement found; is this the intent?
   SzofttechVisualStudo.vcxproj -> C:\Users\lvbubi\Documents\GitHub\Szofttech\Debug\SzofttechVisualStudo.exe
   SzofttechVisualStudo.vcxproj -> C:\Users\lvbubi\Documents\GitHub\Szofttech\Debug\SzofttechVisualStudo.pdb (Partial PDB)

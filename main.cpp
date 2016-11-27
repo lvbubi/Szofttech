@@ -31,13 +31,12 @@ int main()
 	cout << "SzinhazApp: " << endl;
 	cout << "----------- \n" << endl;
 	plays.listSzindarabok();
-
+	plays.listPlays();
 	for (string s : mainmenu)//menu kiirasa
 		cout << s << endl;
 	cin >> select_menu;
 	system(CLEAR);
 	if (select_menu < 5);//Customer customer(&plays,&guestbook);
-
 	while (!exit) {
 		switch (select_menu) {
 		case 1://customer.plays->listPlays();

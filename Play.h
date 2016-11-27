@@ -17,7 +17,6 @@ private:
 
 public:
     Play(const string &name,int price, int cost,int income,const string &data);
-    Play();
 	void PlayKiir()const;
     string getName() const;
     int getPrice() const;
@@ -30,7 +29,6 @@ public:
     void setCost(int value);
     void setIncome(int value);
     void setData(const string &value);
-
 	bool operator ==(const Play &c);
 };
 

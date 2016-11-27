@@ -6,19 +6,15 @@ class Director {
 
 private:
 	Plays* plays;
-	string id;
-	string pw;
+
+protected :
+	void showStatictics(Play* play) const;//egyetlen eloadas statisztikaja! (az amit megkap parameterkent)
 
 public:
 	Director(Plays *plays);
-
 	void showAllStatistics()const;
-
-	void showStatictics(Play* play) const;
-
-	void login();
-
 	void listPlaysBy(string& mode);
+	bool start();
 };
 
 #endif //DIRECTOR_H

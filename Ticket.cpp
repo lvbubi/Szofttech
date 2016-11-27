@@ -2,11 +2,10 @@
 
 Ticket::Ticket()
 {
-
 }
 
-Ticket::Ticket(int row, int column, Play *play, string date)
-    :row(row),column(column),play(play),date(date)
+Ticket::Ticket(int row, int column, string nev, string date)
+    :row(row),column(column),nev(nev),date(date)
 {
     //price=play->getPrice();
 }

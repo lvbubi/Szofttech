@@ -1,142 +1,151 @@
 #include "Plays.h"
 
+Plays::Plays()
+{
+	szindarabok_beolvas();
+	eloadasok_beolvas();
+	/////////////////////////////////////////////////////KULCSMÓDOSÍTÁS
+	pair < Play, list<Eloadas>> par = *Tarolo.begin();
+	par.first.setName("lol");
+	Tarolo.erase(Tarolo.begin());
+	Tarolo.insert(par);
+	/////////////////////////////////////////////////////KULCSMÓDOSÍTÁS
+}
+map<Play, list<Eloadas>>& Plays::getTarolo() 
+{
+	return Tarolo;
+}
 void Plays::listSzindarabok()const  {
 
-    auto it = szindarabok.begin();
-    cout << "Szindarabok: " << endl;
-    cout << "-------------" << endl;
-    int i=0;
-    while(it!=szindarabok.end())
-    {
-        cout << i + 1 << ".szindarab: \n";
-            it->PlayKiir();
-        it++;
-        i++;
-        cout << endl;
-    }
-
+	cout << "Szindarabok: " << endl;
+	cout << "-------------" << endl;
+	int i = 0;
+	auto it = Tarolo.begin();
+	for (; it != Tarolo.end(); it++) {
+		it->first.PlayKiir();
+	}
 }
-
-void Plays::listPlays() const
+void Plays::listEloadas(const Eloadas & eloadas) const
 {
-    int i = 0;
-    for (Eloadas e : plays) {
-        cout << ++i << ".) Eloadas:\n";
-        e.play->PlayKiir();
-        cout << "Datum: " << e.date;
-        cout << "\nSzabad helyek szama:" << e.free_spaces << endl;
-
-    }
+	cout << "Datum: " << eloadas.date;
+	cout << "\nSzabad helyek szama:" << eloadas.free_spaces << endl;
 }
-
-void Plays::addPlay(Play &play)
+void Plays::listEloadasok(const list<Eloadas>& eloadasok) const
 {
-    szindarabok.push_back(play);
+	for (const Eloadas &e : eloadasok)
+		listEloadas(e);
 }
 
-
+//BEOLVASAS
 void Plays::szindarabok_beolvas()
 {
-    //Szindarabok beolvasasa
-    ifstream input("szindarabok.txt");
+	//Szindarabok beolvasasa
+	ifstream input("szindarabok.txt");
 
-    if (input.is_open())
-    {
+	if (input.is_open())
+	{
 
-        string name, data;
-        int price, cost, income;
+		string name, data;
+		int price, cost, income;
 
-        while (input >> name >> price >> cost >> income >> data)
-        {
-            Play tmp(name, price, cost, income, data);
-            szindarabok.push_back(tmp); // szindarabok betoltese
+		while (input >> name >> price >> cost >> income >> data)
+		{
+			Play tmp(name, price, cost, income, data);
+			Tarolo[tmp] = list<Eloadas>();
+		}
 
-        }
-
-        input.close();
-    }
-    //Beolvasas vege
+		input.close();
+	}
+	//Beolvasas vege
 }
 
 void Plays::eloadasok_beolvas()
 {
-		ifstream bemenet("terem.txt");
-		string eloadas_nev;
+	ifstream bemenet("terem.txt");
+	string eloadas_nev;
+	bool van = false;
 
-		if (bemenet.is_open())//helyek beolvasasa, jegyek hozzadasa a megfelelo helyhez.
-		{
-			while (!bemenet.eof()) {
-				Eloadas eloadas;//egy random eloadas, beolvasod/feltoltod random adatokkal a teszteleshez, a helyeket mar beolvassa
-				int i;
-				//Teemo_halala
-				eloadas.play = nullptr;
-				eloadas.free_spaces = 666;
-				bemenet >> eloadas_nev;
-				i = 0;
-				for (int i = 0; i < szindarabok.size(); i++)//itt gecisokat szoptam... foreachnél elszállt mert a for után az ideiglenes változó eltûnik, azt az pointert nem ajánlot hozzáadni -.-
-					if (szindarabok[i].getName() == eloadas_nev) {
-						eloadas.play = &szindarabok[i];
-						break;
-					}
-
-				if (eloadas.play == nullptr) {
-					eloadas.play = &szindarabok[0];
-					cout << "\n\nAz eloadast nem lehetet beazonosítani, így a 0. eloadast kapta meg." << endl << endl;
-				}
-
-				bemenet >> eloadas.date;
-				jegyek_helyek_beolvas(bemenet, eloadas);
-				plays.push_back(eloadas);
-
-
-			}
-			bemenet.close();
-		}
-		plays.pop_back();//az utolsot ketszer adja hozza, vagy javitom vagy marad igy :D
 	
+
+	if (bemenet.is_open())//helyek beolvasasa, jegyek hozzadasa a megfelelo helyhez.
+	{
+		while (!bemenet.eof()) {
+			Eloadas eloadas;//egy random eloadas, beolvasod/feltoltod random adatokkal a teszteleshez, a helyeket mar beolvassa
+			int i;
+			//Teemo_halala
+			eloadas.free_spaces = 666;
+			bemenet >> eloadas_nev;
+			i = 0;
+
+			auto it = Tarolo.begin();
+			while (it != Tarolo.end()) {
+				if (it->first.getName() == eloadas_nev) {
+					van = true;
+					break;
+				}
+				it++;
+			}
+
+			bemenet >> eloadas.date;
+			jegyek_helyek_beolvas(bemenet, eloadas);
+			eloadas.nev = eloadas_nev;
+			if (van)
+				it->second.push_back(eloadas);
+			van = false;
+		}
+		bemenet.close();
+	}
 }
 
 void Plays::jegyek_helyek_beolvas(ifstream &bemenet, Eloadas &eloadas)
 {
-    string line;
-    int i = 0, j = 0;
+	string line;
+	int i = 0, j = 0;
 	eloadas.free_spaces = eloadas.sold_spaces = 0;
-    while (!bemenet.eof())
-    {
-        getline(bemenet, line);
-        if (line[0] == '*')//ha * akkor a jegyek beolvasasa befejezodott.
-            break;
+	while (!bemenet.eof())
+	{
+		getline(bemenet, line);
+		if (line[0] == '*')//ha * akkor a jegyek beolvasasa befejezodott.
+			break;
 
-        eloadas.spaces.push_back(vector<int>(line.size()));
-        eloadas.tickets.push_back(vector<Ticket>(line.size()));
+		eloadas.spaces.push_back(vector<int>(line.size()));
+		eloadas.tickets.push_back(vector<Ticket>(line.size()));
 
-        for (char c : line) {
+		for (char c : line) {
 			if (c - '0' == 0) {
-				eloadas.tickets[i][j] = Ticket(i, j, eloadas.play, eloadas.date);
+				eloadas.tickets[i][j] = Ticket(i, j, eloadas.nev, eloadas.date);
 				eloadas.sold_spaces++;
 			}
 			else
 				eloadas.free_spaces++;
-            eloadas.spaces[i][j++] = c - '0';
+			eloadas.spaces[i][j++] = c - '0';
 
-        }
-        i++;
-        j = 0;
-    }
+		}
+		i++;
+		j = 0;
+	}
+}
+//BEOLVASAS VEGE
+
+void Plays::listPlays() const
+{
+	cout << "Eloadasok: " << endl;
+	cout << "-------------" << endl;
+    int i = 1;
+	
+
+	auto it = Tarolo.begin();
+	for (; it != Tarolo.end(); it++) {
+		cout << i++ << ".) Szindarab:" << endl;
+		it->first.PlayKiir();
+		listEloadasok(it->second);
+		cout << endl;
+	}
+
+	cout << "-------------" << endl;
 }
 
-vector<Eloadas>* Plays::getPlays()
+void Plays::addPlay(Play &play)
 {
-	return &plays;
-}
 
-vector<Play>* Plays::getSzindarabok()
-{
-	return &szindarabok;
-}
-
-Plays::Plays()
-{
-    szindarabok_beolvas();
-    eloadasok_beolvas();
 }

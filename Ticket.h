@@ -1,21 +1,20 @@
 #ifndef TICKET_H
 #define TICKET_H
-
-#include "Play.h"
-
-
+#include <string>
+using namespace std;
 class Ticket {
 
 private:
     int price;
     int row;
     int column;
-    Play* play;
+	string nev;
     string date;
 
+
 public:
-    Ticket();
-    Ticket(int row, int column, Play*play, string date);
+	Ticket();
+    Ticket(int row, int column ,string nev, string date);
 	int getPrice();
 
 	void setPrice(int price);

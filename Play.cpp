@@ -53,6 +53,7 @@ void Play::setData(const string &value)
     data = value;
 }
 
+
 bool Play::operator==(const Play & c)
 {
 	if (name == c.name)
@@ -66,10 +67,6 @@ Play::Play(const string &name, int price, int cost, int income, const string &da
 
 }
 
-Play::Play()
-{
-
-}
 
 void Play::PlayKiir() const
 {

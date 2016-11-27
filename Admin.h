@@ -21,7 +21,5 @@ public:
 
 	void editPlay();
 
-    void login();
-
 };
 #endif // ADMIN_H

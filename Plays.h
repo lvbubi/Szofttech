@@ -7,14 +7,18 @@
 #include "Ticket.h"
 #include <iostream>
 #include <algorithm>
+#include <list>
+#include <map>
 using namespace std;
+
+
 struct Eloadas {
-	Play* play;
 	vector<vector<Ticket>> tickets; //kicst sem bonyolult aaaahh nem
 	vector<vector<int>> spaces;
 	int free_spaces;
 	int sold_spaces;
 	string date;
+	string nev;
 };
 
 
@@ -23,15 +27,18 @@ class Plays{
 
 
 private:
-    vector<Eloadas> plays;
-    vector<Play> szindarabok;//itt eltaroljuk az osszes eloadast ami van, egy szindarabok fajbol beolvassuk majd
+	map<Play, list<Eloadas>> Tarolo;
 	void szindarabok_beolvas();
 	void eloadasok_beolvas();
 	void jegyek_helyek_beolvas(ifstream &bemenet, Eloadas &eloadas);
+protected:
+
+	void listEloadas(const Eloadas & eloadas)const;
+	void listEloadasok(const list<Eloadas> &eloadasok)const;
+	bool friend operator< (const Play& lhs, const Play& rhs) { return (lhs.getName() < rhs.getName()); }
 public:
-	vector<Eloadas> *getPlays();//DIRECTORNAK HA ELOADASOKAT SZERETNE MODOSITANI
-	vector<Play> *getSzindarabok();//DIRECTORNAK HA SZINDARABOKAT SZERETNE MODOSITANI
-    Plays();
+	Plays();
+	map<Play, list<Eloadas>> &getTarolo();
 	void listSzindarabok()const;//a listazas csak az altalanos adatokat tartalmazza, az arak meg ezek majd az igazgatora vonatkoznak pl
 	void listPlays()const;
     void addPlay(Play & play);
