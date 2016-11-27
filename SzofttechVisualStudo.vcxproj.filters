@@ -84,6 +84,9 @@
     <ClInclude Include="Ticket.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="colorize.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <Text Include="terem.txt" />

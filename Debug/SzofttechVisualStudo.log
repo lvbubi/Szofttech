@@ -1,4 +1,6 @@
 ﻿  main.cpp
 c:\users\lvbubi\documents\github\szofttech\main.cpp(29): warning C4390: ';': empty controlled statement found; is this the intent?
-  SzofttechVisualStudo.vcxproj -> C:\Users\lvbubi\Documents\GitHub\Szofttech\Debug\SzofttechVisualStudo.exe
-  SzofttechVisualStudo.vcxproj -> C:\Users\lvbubi\Documents\GitHub\Szofttech\Debug\SzofttechVisualStudo.pdb (Partial PDB)
+Play.obj : error LNK2019: unresolved external symbol "public: __thiscall ColoredString::ColoredString(class std::basic_string<char,struct std::char_traits<char>,class std::allocator<char> > const &,unsigned char)" (??0ColoredString@@QAE@ABV?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@E@Z) referenced in function "public: static class ColoredString __cdecl Colorize::greenBold<char [7]>(char const (&)[7])" (??$greenBold@$$BY06D@Colorize@@SA?AVColoredString@@AAY06$$CBD@Z)
+Play.obj : error LNK2001: unresolved external symbol "private: static void * ColoredString::hConsole" (?hConsole@ColoredString@@0PAXA)
+Play.obj : error LNK2001: unresolved external symbol "private: static unsigned char ColoredString::defColor" (?defColor@ColoredString@@0EA)
+C:\Users\lvbubi\Documents\GitHub\Szofttech\Debug\SzofttechVisualStudo.exe : fatal error LNK1120: 3 unresolved externals

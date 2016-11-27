@@ -2,7 +2,9 @@
 #define PLAY_H
 #include <iostream>
 #include <string>
+#include "colorize.h"
 using namespace std;
+
 class Play {
 
 private:

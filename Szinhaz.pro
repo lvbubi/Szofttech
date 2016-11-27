@@ -12,7 +12,9 @@ SOURCES += main.cpp \
     Plays.cpp \
     Review.cpp \
     Ticket.cpp \
-    Play.cpp
+    Play.cpp \
+    C_Datas.cpp \
+    colorize.cpp
 
 DISTFILES += \
     Szinhaz.pro.user \
@@ -28,4 +30,5 @@ HEADERS += \
     Plays.h \
     Review.h \
     Ticket.h \
-    Play.h
+    Play.h \
+    colorize.h

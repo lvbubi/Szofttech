@@ -66,7 +66,8 @@ Play::Play()
 
 void Play::PlayKiir() const
 {
-		cout<< "Name: " << name << " "
-		<< "Price: " << price << " "
-		<< "Short description: " << data << endl;
+
+       cout<< Colorize::greenBold(("Name: ")) << Colorize::redBold(name) << " "
+        << Colorize::greenBold(("Price: ")) << Colorize::redBold(price) << " "
+        << Colorize::greenBold(("Short Describtion: ")) << Colorize::yellowBold(data) << endl;
 }
