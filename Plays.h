@@ -31,17 +31,20 @@ private:
 	void szindarabok_beolvas();
 	void eloadasok_beolvas();
 	void jegyek_helyek_beolvas(ifstream &bemenet, Eloadas &eloadas);
-protected:
-
+public:
 	void listEloadas(const Eloadas & eloadas)const;
 	void listEloadasok(const list<Eloadas> &eloadasok)const;
 	bool friend operator< (const Play& lhs, const Play& rhs);
-public:
+
+	const Play& getPlay()const;
+	Eloadas & getEloadas(list<Eloadas> &eloadasok);
 	Plays();
 	map<Play, list<Eloadas>> &getTarolo();
+	map<Play, list<Eloadas>> *getTaroloPointer();
 	void listSzindarabok()const;//a listazas csak az altalanos adatokat tartalmazza, az arak meg ezek majd az igazgatora vonatkoznak pl
 	void listPlays()const;
     void addPlay(Play & play);
+	void setNameOfEloadasok(list<Eloadas> &eloadasok,const string &nev);
 };
 
 #endif //PLAYS_H

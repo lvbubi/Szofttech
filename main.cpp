@@ -27,11 +27,11 @@ int main()
 	Director director(&plays);
 
 	director.showAllStatistics();
-
+	plays.listPlays();
 	cout << "SzinhazApp: " << endl;
 	cout << "----------- \n" << endl;
-	plays.listSzindarabok();
-	plays.listPlays();
+	//plays.listSzindarabok();
+	//plays.listPlays();
 	for (string s : mainmenu)//menu kiirasa
 		cout << s << endl;
 	cin >> select_menu;

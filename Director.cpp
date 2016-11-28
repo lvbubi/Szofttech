@@ -14,14 +14,40 @@ Director::Director(Plays *plays):plays(plays)
 
 void Director::showAllStatistics() const
 {
-/*	int i = 1;
-	vector<Play> *szindarabok = plays->getSzindarabok();
+	auto MapPointer = plays->getTaroloPointer();
 
-	vector<Play>::iterator szindarab = szindarabok->begin();
-	for (; szindarab != szindarabok->end(); szindarab++) {
-		cout << i++<<".) "<<szindarab->getName()<<"  ";
-		showStatictics(&(*szindarab));//mivel iterator ezert elobb csillag majd aztan tudjuk atadni a memoriacimet
-	}*/
+
+	//MapPointer->erase(MapPointer->find(plays->getPlay()));//kiválasztott Szindarab törlése (kulcs)
+
+	////////////////////////////////////////////////////////////////////////////////////////////////////////
+	//////////////// KULCS MODOSITAS////////////////////////////////////////////////////////////////////////
+	////////////////////////////////////////////////////////////////////////////////////////////////////////
+	auto it = MapPointer->find(plays->getPlay());//KULCS KIVALASZTASA, ELTAROLASA ITERATORBA
+
+	pair < Play, list<Eloadas>> tmp = *it;		 //TMP LÉTREHOZÁSA ITERATORBOL
+	tmp.first.setName("A remeny hal meg utoljara");//TMP MÓDOSÍTÁSA
+
+	///!!!!! MÓDOSÍTANI KELL A listában lévõ elõadások neveit!!!!!!
+	plays->setNameOfEloadasok(tmp.second, "A remeny hal meg utoljara");//EZ A FUGGVENY VEGIGITERAL a listan
+	//plays->listEloadasok(tmp.second);
+	
+	MapPointer->erase(it);						 //KULCS-PÁR TÖRLÉSE A MAPBÕL
+	MapPointer->insert(tmp);					 //TMP BEILLESZTÉSE
+	///////////////////////////////////////////////////////////////////////////////////////////////////////
+
+
+	//it = MapPointer->find(plays->getPlay()); //KULCS KIVÁLASZTÁSA
+	//auto &eloadas=plays->getEloadas(it->second);// A KIVALASZTOTT KULCS ELOADASAINAK KIIRATASA
+	
+
+	//plays->listSzindarabok();//szindarabok kiiratasa
+	int j = 0;
+	it = MapPointer->begin();//az összes elõadás kiírása
+	for (; it != MapPointer->end(); it++) {
+		cout << ++j << ".) Szindarab:";
+		it->first.PlayKiir();
+		plays->listEloadasok(it->second);
+	}
 }
 
 

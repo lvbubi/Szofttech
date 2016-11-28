@@ -23,7 +23,7 @@ public:
     int getCost() const;
     int getIncome() const;
     string getData() const;
-
+    bool friend operator< (const Play& lhs, const Play& rhs);
     void setName(const string &value);
     void setPrice(int value);
     void setCost(int value);

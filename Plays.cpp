@@ -2,38 +2,80 @@
 
 Plays::Plays()
 {
+	map<Play, list<Eloadas>>::iterator it;
 	szindarabok_beolvas();
 	eloadasok_beolvas();
-	/////////////////////////////////////////////////////KULCSMÓDOSÍTÁS
-	pair < Play, list<Eloadas>> par = *Tarolo.begin();
-	par.first.setName("lol");
-	Tarolo.erase(Tarolo.begin());
-	Tarolo.insert(par);
-	/////////////////////////////////////////////////////KULCSMÓDOSÍTÁS
+
 }
 map<Play, list<Eloadas>>& Plays::getTarolo() 
 {
 	return Tarolo;
 }
+
+map<Play, list<Eloadas>>* Plays::getTaroloPointer()
+{
+	return &Tarolo;
+}
+
 void Plays::listSzindarabok()const  {
 
 	cout << "Szindarabok: " << endl;
 	cout << "-------------" << endl;
-	int i = 0;
+	int i = 1;
 	auto it = Tarolo.begin();
 	for (; it != Tarolo.end(); it++) {
+		cout << i++ << ".) ";
 		it->first.PlayKiir();
 	}
 }
+const Play & Plays::getPlay() const
+{
+
+	// play kivalaszt
+	listSzindarabok();
+	auto it = Tarolo.begin();
+	cout << "Szindarab Kivalasztasa: " << endl;
+	cout << "-------------" << endl;
+	unsigned int idx = 0;
+	do {
+		cout << "Kerek egy indexet";
+		cin >> idx;
+	} while (idx > Tarolo.size());
+	it = Tarolo.begin();
+    for (unsigned int i = 1; i < idx; i++)//proba hatahamegy
+		it++;
+	return it->first;
+}
+Eloadas & Plays::getEloadas(list<Eloadas> &eloadasok)
+{
+	listEloadasok(eloadasok);
+
+    unsigned int idx;
+	do {
+		cout << "Kerek egy indexet";
+		cin >> idx;
+	} while (idx > eloadasok.size());
+	auto it = eloadasok.begin();
+    for (unsigned int i = 1; i < idx; i++)
+		it++;
+	return *it;
+}
 void Plays::listEloadas(const Eloadas & eloadas) const
 {
+	cout << "Eloadas: " << eloadas.nev << "\t";
 	cout << "Datum: " << eloadas.date;
 	cout << "\nSzabad helyek szama:" << eloadas.free_spaces << endl;
 }
 void Plays::listEloadasok(const list<Eloadas>& eloadasok) const
 {
-	for (const Eloadas &e : eloadasok)
-		listEloadas(e);
+	cout << "Eloadasok Kilistazasa: " << endl;
+	cout << "-------------" << endl;
+	int i = 1;
+	for (const Eloadas &eloadas : eloadasok) {
+		cout << i++ << ".) ";
+		listEloadas(eloadas);
+	}
+
 }
 
 //BEOLVASAS
@@ -71,11 +113,9 @@ void Plays::eloadasok_beolvas()
 	{
 		while (!bemenet.eof()) {
 			Eloadas eloadas;//egy random eloadas, beolvasod/feltoltod random adatokkal a teszteleshez, a helyeket mar beolvassa
-			int i;
 			//Teemo_halala
 			eloadas.free_spaces = 666;
 			bemenet >> eloadas_nev;
-			i = 0;
 
 			auto it = Tarolo.begin();
 			while (it != Tarolo.end()) {
@@ -129,13 +169,14 @@ void Plays::jegyek_helyek_beolvas(ifstream &bemenet, Eloadas &eloadas)
 
 void Plays::listPlays() const
 {
-	cout << "Eloadasok: " << endl;
+	cout << "listPlays: " << endl;
 	cout << "-------------" << endl;
     int i = 1;
 	
 
 	auto it = Tarolo.begin();
 	for (; it != Tarolo.end(); it++) {
+		cout << "-------------" << endl;
 		cout << i++ << ".) Szindarab:" << endl;
 		it->first.PlayKiir();
 		listEloadasok(it->second);
@@ -147,7 +188,14 @@ void Plays::listPlays() const
 
 void Plays::addPlay(Play &play)
 {
+    Tarolo[play];
 
+}
+
+void Plays::setNameOfEloadasok(list<Eloadas>& eloadasok, const string & nev)
+{
+	for (Eloadas &eloadas : eloadasok)
+		eloadas.nev = nev;
 }
 
 bool operator<(const Play & lhs, const Play & rhs)
