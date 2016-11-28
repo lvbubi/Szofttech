@@ -78,6 +78,38 @@ void Plays::listEloadasok(const list<Eloadas>& eloadasok) const
 
 }
 
+
+void Plays::listPlays() const
+{
+	cout << "listPlays: " << endl;
+	cout << "-------------" << endl;
+    int i = 1;
+	
+
+	auto it = Tarolo.begin();
+	for (; it != Tarolo.end(); it++) {
+		cout << "-------------" << endl;
+		cout << i++ << ".) Szindarab:" << endl;
+		it->first.PlayKiir();
+		listEloadasok(it->second);
+		cout << endl;
+	}
+
+	cout << "-------------" << endl;
+}
+
+
+void Plays::setNameOfEloadasok(list<Eloadas>& eloadasok, const string & nev)
+{
+	for (Eloadas &eloadas : eloadasok)
+		eloadas.nev = nev;
+}
+
+bool operator<(const Play & lhs, const Play & rhs)
+{
+	return (lhs.getName() < rhs.getName());
+}
+
 //BEOLVASAS
 void Plays::szindarabok_beolvas()
 {
@@ -86,16 +118,22 @@ void Plays::szindarabok_beolvas()
 
 	if (input.is_open())
 	{
-
 		string name, data;
+		string line;
 		int price, cost, income;
-
-		while (input >> name >> price >> cost >> income >> data)
-		{
+		while (!input.eof()) {
+			data = "";
+			input >> name >> price >> cost >> income;
+			do {//beolvasssa a describtiont mig *ot nem kap
+				data += "\n";
+				getline(input, line);
+				data += line;
+			} while (line[0] != '*');
+			data.pop_back();//* törlése
+			data.pop_back();// "\n" törlése
 			Play tmp(name, price, cost, income, data);
 			Tarolo[tmp] = list<Eloadas>();
 		}
-
 		input.close();
 	}
 	//Beolvasas vege
@@ -107,13 +145,11 @@ void Plays::eloadasok_beolvas()
 	string eloadas_nev;
 	bool van = false;
 
-	
-
 	if (bemenet.is_open())//helyek beolvasasa, jegyek hozzadasa a megfelelo helyhez.
 	{
 		while (!bemenet.eof()) {
 			Eloadas eloadas;//egy random eloadas, beolvasod/feltoltod random adatokkal a teszteleshez, a helyeket mar beolvassa
-			//Teemo_halala
+							//Teemo_halala
 			eloadas.free_spaces = 666;
 			bemenet >> eloadas_nev;
 
@@ -166,39 +202,3 @@ void Plays::jegyek_helyek_beolvas(ifstream &bemenet, Eloadas &eloadas)
 	}
 }
 //BEOLVASAS VEGE
-
-void Plays::listPlays() const
-{
-	cout << "listPlays: " << endl;
-	cout << "-------------" << endl;
-    int i = 1;
-	
-
-	auto it = Tarolo.begin();
-	for (; it != Tarolo.end(); it++) {
-		cout << "-------------" << endl;
-		cout << i++ << ".) Szindarab:" << endl;
-		it->first.PlayKiir();
-		listEloadasok(it->second);
-		cout << endl;
-	}
-
-	cout << "-------------" << endl;
-}
-
-void Plays::addPlay(Play &play)
-{
-    Tarolo[play];
-
-}
-
-void Plays::setNameOfEloadasok(list<Eloadas>& eloadasok, const string & nev)
-{
-	for (Eloadas &eloadas : eloadasok)
-		eloadas.nev = nev;
-}
-
-bool operator<(const Play & lhs, const Play & rhs)
-{
-	return (lhs.getName() < rhs.getName());
-}

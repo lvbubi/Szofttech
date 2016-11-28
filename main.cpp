@@ -18,8 +18,9 @@ using namespace std;
 
 int main()
 {
-	
-	//Admin admin;
+	cout << "SzinhazApp: " << endl;
+	cout << "----------- \n" << endl;
+
 	string mainmenu[] = { "Eloadasok megtekintese","Jegyvasarlas","Vendegkonyvbe iras","Fizetes","Kilepes" };
 	Plays plays;
 	bool exit = false;
@@ -27,9 +28,8 @@ int main()
 	Director director(&plays);
 
 	director.showAllStatistics();
-	plays.listPlays();
-	cout << "SzinhazApp: " << endl;
-	cout << "----------- \n" << endl;
+	
+
 	//plays.listSzindarabok();
 	//plays.listPlays();
 	for (string s : mainmenu)//menu kiirasa
@@ -39,7 +39,7 @@ int main()
 	if (select_menu < 5);//Customer customer(&plays,&guestbook);
 	while (!exit) {
 		switch (select_menu) {
-		case 1://customer.plays->listPlays();
+		case 1:plays.listPlays();
 			break;
 		case 2://buy ticket
 			break;
