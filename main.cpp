@@ -20,7 +20,10 @@ using namespace std;
 
 int main()
 {
+
     Plays plays;
+    Customer c(&plays);
+    c.buyTicket();
 Director director(&plays);
 
 Customer customer(&plays);
