@@ -9,6 +9,7 @@
 #include <cstdlib>
 #include <algorithm>
 #include "Director.h"
+#include <functional>
 #ifdef _WIN32
 #define CLEAR "cls"
 #else //In any other OS
@@ -22,10 +23,12 @@ int main()
 	//Admin admin;
 	string mainmenu[] = { "Eloadasok megtekintese","Jegyvasarlas","Vendegkonyvbe iras","Fizetes","Kilepes" };
 	Plays plays;
+    string valami="valami";
 	bool exit = false;
 	int select_menu;
 	Director director(&plays);
-
+    director.listPlaysBy(valami);
+    plays.listPlays();
 	director.showAllStatistics();
 	plays.listPlays();
 	cout << "SzinhazApp: " << endl;

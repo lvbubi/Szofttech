@@ -54,13 +54,50 @@ void Director::showAllStatistics() const
 void Director::showStatictics(Play* play)const  {
     //színdarab adaira vagyunk kíváncsiak
     //play->PlayKiir(); itt nem kíváncsi ezekre
+    cout<<play->getName()<<"eloadas adatai: ";
 	cout << "cost: " << play->getCost() << " Ft Income: " << play->getIncome() 
 	<< " Ft Profit: " << play->getIncome() - play->getCost() << " Ft" << endl;
 }
 
 void Director::listPlaysBy(string& mode) {
-//	std::sort(e.begin(), e.end(),
-//		[](Eloadas const &a, Eloadas const &b) {
-//		return a.play->getIncome < b.play->getIncome;
-//	});
+
+
+    auto mappointer=plays->getTaroloPointer();
+    auto it=mappointer->begin();
+    vector<Play>e;
+    for(const auto &par:*mappointer)
+        e.push_back(par.first);
+    function<int(const Play &a, const Play &b)> compare;
+    switch(1){
+    case 1: compare=[]( const Play &a,  const Play &b) {
+    return (a.getPrice() < b.getPrice());
+    };
+    case 2: compare=[]( const Play &a,  const Play &b) {
+            return (a.getPrice() < b.getPrice());
+        };
+    case 3: compare=[]( const Play &a,  const Play &b) {
+            return (a.getPrice() < b.getPrice());
+
+        };
+    }
+
+
+
+
+    //std::sort(lista,[](const Play a, const Play b){return a.getPrice()<b.getPrice();});
+
+    std::sort(e.begin(), e.end(),
+        compare);
+
+    for(auto& szindarab:e)
+        szindarab.PlayKiir();
+
+
+    list<pair<Play,list<Eloadas>>>parok;
+    for(const auto &par:*mappointer)
+        parok.push_back(par);
+
+    auto faszom=plays->getEloadas(parok.front().second);
+    cout<<endl<<endl<<"free spaces: "<<faszom.free_spaces<<endl<<"sold_spaces: "<<faszom.sold_spaces<<endl<<endl;
+
 }

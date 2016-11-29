@@ -1,7 +1,7 @@
 #ifndef DIRECTOR_H
 #define DIRECTOR_H
 #include "Plays.h"
-
+#include <functional>
 class Director {
 
 private:
