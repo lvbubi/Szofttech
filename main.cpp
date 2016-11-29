@@ -10,6 +10,7 @@
 #include <algorithm>
 #include "Director.h"
 #include <functional>
+#include"Customer.h"
 #ifdef _WIN32
 #define CLEAR "cls"
 #else //In any other OS
@@ -19,8 +20,13 @@ using namespace std;
 
 int main()
 {
+    Plays plays;
+Director director(&plays);
 
-	cout << "SzinhazApp: " << endl;
+Customer customer(&plays);
+customer.buyTicket();
+
+    /*cout << "SzinhazApp: " << endl;
 	cout << "----------- \n" << endl;
 
 	string mainmenu[] = { "Eloadasok megtekintese","Jegyvasarlas","Vendegkonyvbe iras","Fizetes","Kilepes" };
@@ -81,6 +87,6 @@ int main()
 	random.name = "NevemSenki";
 	random.birthDate = "1999.12.12";
 	Payment fizetes;
-	fizetes.Pay(random, 10000000);
+    fizetes.Pay(random, 10000000);*/
 	return 0;
 }

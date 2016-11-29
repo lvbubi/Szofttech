@@ -2,9 +2,9 @@
 
 Plays::Plays()
 {
-	map<Play, list<Eloadas>>::iterator it;
 	szindarabok_beolvas();
 	eloadasok_beolvas();
+
 
 }
 map<Play, list<Eloadas>>& Plays::getTarolo() 
@@ -92,6 +92,7 @@ void Plays::listPlays() const
 		cout << "-------------" << endl;
 		cout << i++ << ".) Szindarab:" << endl;
 		it->first.PlayKiir();
+        it->first.getIncome();
 		listEloadasok(it->second);
 		cout << endl;
 	}

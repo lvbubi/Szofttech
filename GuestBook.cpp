@@ -20,11 +20,6 @@ GuestBook::GuestBook()
 }
 
 
-GuestBook &GuestBook::getInstance()
-{
-    static GuestBook  instance;
-    return instance;
-}
 
 void GuestBook::listReviews(bool checked) {
 

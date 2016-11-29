@@ -10,9 +10,9 @@ private:
 	Plays* plays;
 	Payment fizetes;
 public:
-	void buyTicket(Play* play);
-
-	void writeReview();
+    void buyTicket();
+    Customer(Plays * plays);
+    void writeReview(const string &name, const string &label, const string &comment);
 };
 
 //basszuk el a kódot lol
