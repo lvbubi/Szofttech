@@ -4,17 +4,15 @@
 #include <functional>
 class Director {
 
+
 private:
 	Plays* plays;
-
-protected :
-
-
+    enum mode{profit,bevetel,ar};
 public:
     void showStatictics() const; //A kivalasztott eloadas statisztikai adatainak megtekintese
 	Director(Plays *plays);
 	void showAllStatistics()const;
-	void listPlaysBy(string& mode);
+    void listPlaysBy(const mode & _mode);
 	bool start();
 };
 

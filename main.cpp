@@ -19,6 +19,7 @@ using namespace std;
 
 int main()
 {
+
 	cout << "SzinhazApp: " << endl;
 	cout << "----------- \n" << endl;
 
@@ -28,6 +29,8 @@ int main()
 	bool exit = false;
 	int select_menu;
 	Director director(&plays);
+
+    director.start();
     //director.listPlaysBy(valami);
    //plays.listPlays();
     //director.showAllStatistics();
