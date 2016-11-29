@@ -55,6 +55,7 @@ Eloadas & Plays::getEloadas(list<Eloadas> &eloadasok)
 		cout << "Kerek egy indexet";
 		cin >> idx;
 	} while (idx > eloadasok.size());
+
 	auto it = eloadasok.begin();
     for (unsigned int i = 1; i < idx; i++)
 		it++;

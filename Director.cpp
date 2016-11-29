@@ -51,12 +51,40 @@ void Director::showAllStatistics() const
 }
 
 
-void Director::showStatictics(Play* play)const  {
-    //színdarab adaira vagyunk kíváncsiak
-    //play->PlayKiir(); itt nem kíváncsi ezekre
-    cout<<play->getName()<<"eloadas adatai: ";
-	cout << "cost: " << play->getCost() << " Ft Income: " << play->getIncome() 
-	<< " Ft Profit: " << play->getIncome() - play->getCost() << " Ft" << endl;
+void Director::showStatictics()const  {
+
+    //a kiválasztott elõadás statisztikai adatainak megtekintése
+    //a rendszer megejeleníti az elõadás nevét és idõpontjait
+    const Play *akt=&(plays->getPlay());        //a const miatt kell a const(szindarab kivalasztva)
+
+    auto par= *(plays->getTarolo()).find(*akt);//kikeressük a színdarabhoz tartozó elõadásokat
+    cout<<akt->getName()<<" idpontjai: "<<endl;            //majd megjelenítjük
+    auto it=par.second.begin();
+    int i=1;
+    while(it!=par.second.end()){
+        cout<<i++<<".)";
+        cout<<it->date<<endl;
+        it++;
+    }
+    //az igazgato kivalaszt egy idopontot
+    unsigned idx;
+
+    cout<<"Adjon egy indexet: ";
+    cin>>idx;
+    //4.1 és 4.2
+    while(idx>par.second.size()){
+        cout<<"hibas index/datum, probalja ujra: ";
+        cin>>idx;
+    }
+    it=par.second.begin();
+
+    for(int i=1;i<idx;i++){
+        it++;
+    }
+    //az idoponthoz tartozo statisztikai adatok megjelenitese
+    cout<<"cost: "<<akt->getCost()/par.second.size()<<" Ft";
+    cout<<" income: "<<it->free_spaces*akt->getPrice()<<" Ft";
+    cout<<" price: "<<akt->getPrice()<<" Ft";
 }
 
 void Director::listPlaysBy(string& mode) {

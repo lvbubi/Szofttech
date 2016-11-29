@@ -28,11 +28,11 @@ int main()
 	bool exit = false;
 	int select_menu;
 	Director director(&plays);
-    director.listPlaysBy(valami);
-    plays.listPlays();
-	director.showAllStatistics();
-	
-
+    //director.listPlaysBy(valami);
+   //plays.listPlays();
+    //director.showAllStatistics();
+    director.showStatictics();
+    cout<<"anyad";
 	//plays.listSzindarabok();
 	//plays.listPlays();
 	for (string s : mainmenu)//menu kiirasa

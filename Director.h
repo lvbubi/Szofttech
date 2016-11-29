@@ -8,9 +8,10 @@ private:
 	Plays* plays;
 
 protected :
-	void showStatictics(Play* play) const;//egyetlen eloadas statisztikaja! (az amit megkap parameterkent)
+
 
 public:
+    void showStatictics() const; //A kivalasztott eloadas statisztikai adatainak megtekintese
 	Director(Plays *plays);
 	void showAllStatistics()const;
 	void listPlaysBy(string& mode);
