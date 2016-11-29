@@ -18,7 +18,7 @@ map<Play, list<Eloadas>>* Plays::getTaroloPointer()
 }
 
 void Plays::listSzindarabok()const  {
-
+	system(CLEAR);
 	cout << "Szindarabok: " << endl;
 	cout << "-------------" << endl;
 	int i = 1;
@@ -30,7 +30,7 @@ void Plays::listSzindarabok()const  {
 }
 const Play & Plays::getPlay() const
 {
-
+	system(CLEAR);
 	// play kivalaszt
 	listSzindarabok();
 	auto it = Tarolo.begin();
@@ -48,6 +48,7 @@ const Play & Plays::getPlay() const
 }
 Eloadas & Plays::getEloadas(list<Eloadas> &eloadasok)
 {
+	system(CLEAR);
 	listEloadasok(eloadasok);
 
     unsigned int idx;
@@ -69,6 +70,7 @@ void Plays::listEloadas(const Eloadas & eloadas) const
 }
 void Plays::listEloadasok(const list<Eloadas>& eloadasok) const
 {
+	system(CLEAR);
 	cout << "Eloadasok Kilistazasa: " << endl;
 	cout << "-------------" << endl;
 	int i = 1;
@@ -82,6 +84,7 @@ void Plays::listEloadasok(const list<Eloadas>& eloadasok) const
 
 void Plays::listPlays() const
 {
+	system(CLEAR);
 	cout << "listPlays: " << endl;
 	cout << "-------------" << endl;
     int i = 1;
@@ -98,6 +101,16 @@ void Plays::listPlays() const
 	}
 
 	cout << "-------------" << endl;
+}
+
+void Plays::showAuditorium(const vector<vector<int>>& spaces) const
+{
+	system(CLEAR);
+	for (vector<int> sor : spaces) {
+		for (int oszlop : sor)
+			cout << oszlop;
+		cout << endl;
+	}
 }
 
 

@@ -9,6 +9,12 @@
 #include <algorithm>
 #include <list>
 #include <map>
+
+#ifdef _WIN32
+#define CLEAR "cls"
+#else //In any other OS
+#define CLEAR "clear"
+#endif
 using namespace std;
 
 
@@ -37,7 +43,7 @@ public:
 	void listEloadasok(const list<Eloadas> &eloadasok)const;
 	void listSzindarabok()const;//a listazas csak az altalanos adatokat tartalmazza, az arak meg ezek majd az igazgatora vonatkoznak pl
 	void listPlays()const;
-
+	void showAuditorium(const vector<vector<int>> &spaces)const;
 	bool friend operator< (const Play& lhs, const Play& rhs);
 
 	const Play& getPlay()const;

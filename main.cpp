@@ -1,5 +1,4 @@
 #include <iostream>
-#include <vector>
 #include <string>
 #include <fstream>
 #include "Plays.h"
@@ -11,11 +10,7 @@
 #include "Director.h"
 #include <functional>
 #include"Customer.h"
-#ifdef _WIN32
-#define CLEAR "cls"
-#else //In any other OS
-#define CLEAR "clear"
-#endif
+
 using namespace std;
 
 int main()
@@ -25,9 +20,6 @@ int main()
     Customer c(&plays);
     c.buyTicket();
 Director director(&plays);
-
-Customer customer(&plays);
-customer.buyTicket();
 
     /*cout << "SzinhazApp: " << endl;
 	cout << "----------- \n" << endl;

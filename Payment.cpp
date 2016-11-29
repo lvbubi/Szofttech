@@ -3,16 +3,16 @@
 Payment::Payment()
 {
 	ifstream bemenet("bank_accounts.txt");
-	C_Datas account;
+	string account_number, password, name, birthDate;
 	int money;
 	if(bemenet.is_open())
 		while (!bemenet.eof()) {
-			bemenet >> account.account_number;
-			bemenet >> account.password;
-			bemenet >> account.name;
-			bemenet >> account.birthDate;
+			bemenet >> account_number;
+			bemenet >> password;
+			bemenet >> name;
+			bemenet >> birthDate;
 			bemenet >> money;
-			CustomerDatas.push_back(pair<C_Datas,int>(account,money));
+			CustomerDatas.push_back(pair<C_Datas,int>(C_Datas(name, birthDate, account_number, password),money));
 		}
 }
 
