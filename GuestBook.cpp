@@ -67,3 +67,9 @@ GuestBook::~GuestBook()
 {
 
 }
+
+list<Review> &GuestBook::getReviews()
+{
+    return reviews;
+}
+
