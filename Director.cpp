@@ -7,6 +7,14 @@ Director::Director(Plays *plays):plays(plays)
 
 void Director::showAllStatistics() const
 {
+
+    auto it=plays->begin();
+    for(;it!=plays->end();it++){
+        cout<<Colorize::greenBackground(it->first.getName())<<" ar: "<<it->first.getPrice()<<Colorize::yellowBold(" Ft")
+          <<" bevetel:"<<it->first.getIncome()<<Colorize::yellowBold(" Ft")<<"kiadas: "<<it->first.getCost()<<
+            Colorize::yellowBold(" Ft")<<"profit: "<<((it->first.getIncome())-(it->first.getCost()))<<Colorize::yellowBold(" Ft")<<endl;
+        cout<<endl;
+    }
 }
 
 

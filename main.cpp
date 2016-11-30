@@ -17,13 +17,12 @@ int main()
 {
 
     Plays plays;
-    GuestBook gbook;
-    gbook.listReviews(false);
-	Director director(&plays);
-    Customer customer(&plays,&gbook);
+
+    Director director(&plays);
+    director.start();
 	Admin admin(&plays);
 
-    customer.start();
+
 
 
 

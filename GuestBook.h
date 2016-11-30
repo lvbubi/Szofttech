@@ -10,13 +10,13 @@ class GuestBook {
 
 private:
     list<Review> reviews;
-                            //singleton osztály, ebbõl tuti nem lesz több, itt történik meg a beolvasás is
+
 public:
     GuestBook();
     void listReviews(bool checked);     //ez csak azokat a review-kat listázza,amelyek már checkolva lettek(az admint csak a nem csekkolt,
                                         //mindenki mást csak a csekkolt verzió érdekelheti
 
     void addReview(const string& name,const string&label,const string& comment);    //review hozzáadása
-    ~GuestBook();                   //ide még meg kéne írni a fájlba írást, illetve a felszabadítást
+    ~GuestBook();                   //ide még meg kéne írni a fájlba írást
 };
 #endif //GUESTBOOK_H

@@ -24,7 +24,7 @@ GuestBook::GuestBook()
             do{
                 getline(input,word);
                 if(word[0]!='*')
-                comment+=word;
+                comment+=word+"\n";
             }while(word[0]!='*');
 
             Review tmp(name,label,comment);
