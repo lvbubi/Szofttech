@@ -7,13 +7,14 @@
 class Customer {
 
 private:
-	GuestBook* GBook;
 	Plays* plays;
+    GuestBook* GBook;
 	Payment fizetes;
 public:
     void buyTicket();
-    Customer(Plays * plays);
+    Customer(Plays * plays,GuestBook* GBook);
     void writeReview(const string &name, const string &label, const string &comment);
+    bool start();
 };
 
 //basszuk el a kódot lol
