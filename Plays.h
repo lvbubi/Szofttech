@@ -24,6 +24,24 @@ struct Eloadas {
 	int sold_spaces;
 	string date;
 	string nev;
+    friend inline ostream & operator <<(ostream & os, const Eloadas & eloadas){//EGY ELOADAS KIIRASA
+    os << "Eloadas: " << eloadas.nev << "\t";
+    os << "Datum: " << eloadas.date;
+    os << "\nSzabad helyek szama:" << eloadas.free_spaces << endl;
+    return os;
+    }
+
+	friend inline ostream & operator <<(ostream & os, const list<Eloadas> &eloadasok) {//ELOADASOK KIIRASA LISTABOL
+		system(CLEAR);
+		os << "Eloadasok Kilistazasa: " << endl;
+		os << "-------------" << endl;
+		int i = 1;
+		for (const Eloadas &eloadas : eloadasok) {
+			os << i++ << ".) ";
+			os << eloadas;
+		}
+		return os;
+	}
 };
 
 
@@ -38,13 +56,20 @@ private:
 	void jegyek_helyek_beolvas(ifstream &bemenet, Eloadas &eloadas);
 public:
 	Plays();
-	friend ostream & operator <<(ostream & os, const Eloadas & eloadas);//EGY ELOADAS KIIRASA
-	friend ostream & operator <<(ostream & os, const list<Eloadas> &eloadasok);//ELOADASOK KIIRASA LISTABOL
-	friend ostream & operator <<(ostream & os, const vector<vector<int>> &spaces);//Helyek megjelenitese
+	Plays(Plays &&) = default;
+    friend inline ostream & operator <<(ostream & os, const vector<vector<int>> &spaces){//Helyek megjelenitese
+    system(CLEAR);
+    for (vector<int> sor : spaces) {
+        for (int oszlop : sor)
+            os << oszlop;
+        os << endl;
+    }
+    return os;
+    }
 	map<Play, list<Eloadas>>::iterator begin();//begin a foreachez
 	map<Play, list<Eloadas>>::iterator end(); //end a foreachez
 
-	bool friend operator< (const Play& lhs, const Play& rhs);// a maphez!
+	friend bool operator< (const Play& lhs, const Play& rhs);// a maphez!
 
 	void listSzindarabok()const;//a listazas csak az altalanos adatokat tartalmazza, az arak meg ezek majd az igazgatora vonatkoznak pl
 	void listPlays()const;

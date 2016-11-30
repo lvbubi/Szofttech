@@ -37,7 +37,7 @@ public:
 	//////////////////////////////////
 	///////////OPERATOROK/////////////
 	friend ostream & operator <<(ostream & os, const Play & play);//kiiratas
-	bool friend operator< (const Play& lhs, const Play& rhs);
+	friend bool operator< (const Play& lhs, const Play& rhs);
 	bool operator ==(const Play &c);
 };
 

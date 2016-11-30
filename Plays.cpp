@@ -124,38 +124,6 @@ void Plays::setNameOfEloadasok(list<Eloadas>& eloadasok, const string & nev)
 		eloadas.nev = nev;
 }
 
-ostream & operator<<(ostream & os, const Eloadas & eloadas)
-{
-	os << "Eloadas: " << eloadas.nev << "\t";
-	os << "Datum: " << eloadas.date;
-	os << "\nSzabad helyek szama:" << eloadas.free_spaces << endl;
-	return os;
-}
-
-ostream & operator<<(ostream & os, const list<Eloadas>& eloadasok)
-{
-	system(CLEAR);
-	os << "Eloadasok Kilistazasa: " << endl;
-	os << "-------------" << endl;
-	int i = 1;
-	for (const Eloadas &eloadas : eloadasok) {
-		os << i++ << ".) ";
-		os << eloadas;
-	}
-	return os;
-}
-
-ostream & operator<<(ostream & os, const vector<vector<int>>& spaces)
-{
-	system(CLEAR);
-	for (vector<int> sor : spaces) {
-		for (int oszlop : sor)
-			os << oszlop;
-		os << endl;
-	}
-	return os;
-}
-
 bool operator<(const Play & lhs, const Play & rhs)
 {
 	return (lhs.getName() < rhs.getName());
