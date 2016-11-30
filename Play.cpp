@@ -66,12 +66,3 @@ Play::Play(const string &name, int price, int cost, int income, const string &da
 {
 
 }
-
-
-void Play::PlayKiir() const
-{
-
-       cout<< Colorize::greenBold(("Name: ")) << Colorize::redBold(name) << " "
-        << Colorize::greenBold(("Price: ")) << Colorize::redBold(price) << " "
-        << Colorize::greenBold(("Short Describtion: ")) << Colorize::yellowBold(data) << endl;
-}

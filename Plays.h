@@ -19,7 +19,6 @@ using namespace std;
 
 
 struct Eloadas {
-	vector<vector<Ticket>> tickets; //kicst sem bonyolult aaaahh nem
 	vector<vector<int>> spaces;
 	int free_spaces;
 	int sold_spaces;
@@ -39,19 +38,26 @@ private:
 	void jegyek_helyek_beolvas(ifstream &bemenet, Eloadas &eloadas);
 public:
 	Plays();
-	void listEloadas(const Eloadas & eloadas)const;
-	void listEloadasok(const list<Eloadas> &eloadasok)const;
+	friend ostream & operator <<(ostream & os, const Eloadas & eloadas);//EGY ELOADAS KIIRASA
+	friend ostream & operator <<(ostream & os, const list<Eloadas> &eloadasok);//ELOADASOK KIIRASA LISTABOL
+	friend ostream & operator <<(ostream & os, const vector<vector<int>> &spaces);//Helyek megjelenitese
+	map<Play, list<Eloadas>>::iterator begin();//begin a foreachez
+	map<Play, list<Eloadas>>::iterator end(); //end a foreachez
+
+	bool friend operator< (const Play& lhs, const Play& rhs);// a maphez!
+
 	void listSzindarabok()const;//a listazas csak az altalanos adatokat tartalmazza, az arak meg ezek majd az igazgatora vonatkoznak pl
 	void listPlays()const;
-	void showAuditorium(const vector<vector<int>> &spaces)const;
-	bool friend operator< (const Play& lhs, const Play& rhs);
-
+	
+	////////////////////////////////////////////////
+	//////////////getter funkciók///////////////////
 	const Play& getPlay()const;
 	Eloadas & getEloadas(list<Eloadas> &eloadasok);
+	pair<Play, list<Eloadas>> getPair();
 
-	map<Play, list<Eloadas>> &getTarolo();
-	map<Play, list<Eloadas>> *getTaroloPointer();
-
+	////////////////////////////////////////////////
+	////////////////Módosító függvények/////////////
+	void swapSzindarab(pair<Play, list<Eloadas>> &position, pair<Play, list<Eloadas>> &swap);
 	void setNameOfEloadasok(list<Eloadas> &eloadasok,const string &nev);
 };
 

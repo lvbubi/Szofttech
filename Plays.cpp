@@ -7,14 +7,21 @@ Plays::Plays()
 
 
 }
-map<Play, list<Eloadas>>& Plays::getTarolo() 
+
+void Plays::swapSzindarab(pair<Play, list<Eloadas>> &position,pair<Play, list<Eloadas>>& swap)
 {
-	return Tarolo;
+	Tarolo.erase(Tarolo.find(position.first));	 //KULCS-PÁR TÖRLÉSE A MAPBÕL
+	Tarolo.insert(swap);					 //TMP BEILLESZTÉSE
 }
 
-map<Play, list<Eloadas>>* Plays::getTaroloPointer()
+map<Play, list<Eloadas>>::iterator Plays::begin()
 {
-	return &Tarolo;
+	return Tarolo.begin();
+}
+
+map<Play, list<Eloadas>>::iterator Plays::end()
+{
+	return Tarolo.end();
 }
 
 void Plays::listSzindarabok()const  {
@@ -25,7 +32,7 @@ void Plays::listSzindarabok()const  {
 	auto it = Tarolo.begin();
 	for (; it != Tarolo.end(); it++) {
 		cout << i++ << ".) ";
-		it->first.PlayKiir();
+		cout << it->first;
 	}
 }
 const Play & Plays::getPlay() const
@@ -49,7 +56,7 @@ const Play & Plays::getPlay() const
 Eloadas & Plays::getEloadas(list<Eloadas> &eloadasok)
 {
 	system(CLEAR);
-	listEloadasok(eloadasok);
+	cout << eloadasok;
 
     unsigned int idx;
 	do {
@@ -62,24 +69,30 @@ Eloadas & Plays::getEloadas(list<Eloadas> &eloadasok)
 		it++;
 	return *it;
 }
-void Plays::listEloadas(const Eloadas & eloadas) const
-{
-	cout << "Eloadas: " << eloadas.nev << "\t";
-	cout << "Datum: " << eloadas.date;
-	cout << "\nSzabad helyek szama:" << eloadas.free_spaces << endl;
-}
-void Plays::listEloadasok(const list<Eloadas>& eloadasok) const
+
+pair<Play, list<Eloadas>> Plays::getPair()
 {
 	system(CLEAR);
-	cout << "Eloadasok Kilistazasa: " << endl;
+	// play kivalaszt
+	listSzindarabok();
+	auto it = Tarolo.begin();
+	cout << "Szindarab Kivalasztasa: " << endl;
 	cout << "-------------" << endl;
-	int i = 1;
-	for (const Eloadas &eloadas : eloadasok) {
-		cout << i++ << ".) ";
-		listEloadas(eloadas);
-	}
+	unsigned int idx = 0;
+	do {
+		cout << "Kerek egy indexet";
+		cin >> idx;
+	} while (idx > Tarolo.size() || idx<=0);
+	
+	it = Tarolo.begin();
+	for (unsigned int i = 1; i < idx; i++)//proba hatahamegy
+		it++;
 
+	pair<Play, list<Eloadas>> par=*it;
+	return  par;
 }
+
+
 
 
 void Plays::listPlays() const
@@ -94,24 +107,15 @@ void Plays::listPlays() const
 	for (; it != Tarolo.end(); it++) {
 		cout << "-------------" << endl;
 		cout << i++ << ".) Szindarab:" << endl;
-		it->first.PlayKiir();
+		cout << it->first;
         it->first.getIncome();
-		listEloadasok(it->second);
+		cout << it->second;
 		cout << endl;
 	}
 
 	cout << "-------------" << endl;
 }
 
-void Plays::showAuditorium(const vector<vector<int>>& spaces) const
-{
-	system(CLEAR);
-	for (vector<int> sor : spaces) {
-		for (int oszlop : sor)
-			cout << oszlop;
-		cout << endl;
-	}
-}
 
 
 void Plays::setNameOfEloadasok(list<Eloadas>& eloadasok, const string & nev)
@@ -120,9 +124,49 @@ void Plays::setNameOfEloadasok(list<Eloadas>& eloadasok, const string & nev)
 		eloadas.nev = nev;
 }
 
+ostream & operator<<(ostream & os, const Eloadas & eloadas)
+{
+	os << "Eloadas: " << eloadas.nev << "\t";
+	os << "Datum: " << eloadas.date;
+	os << "\nSzabad helyek szama:" << eloadas.free_spaces << endl;
+	return os;
+}
+
+ostream & operator<<(ostream & os, const list<Eloadas>& eloadasok)
+{
+	system(CLEAR);
+	os << "Eloadasok Kilistazasa: " << endl;
+	os << "-------------" << endl;
+	int i = 1;
+	for (const Eloadas &eloadas : eloadasok) {
+		os << i++ << ".) ";
+		os << eloadas;
+	}
+	return os;
+}
+
+ostream & operator<<(ostream & os, const vector<vector<int>>& spaces)
+{
+	system(CLEAR);
+	for (vector<int> sor : spaces) {
+		for (int oszlop : sor)
+			os << oszlop;
+		os << endl;
+	}
+	return os;
+}
+
 bool operator<(const Play & lhs, const Play & rhs)
 {
 	return (lhs.getName() < rhs.getName());
+}
+
+ostream & operator<<(ostream & os, const Play & play)
+{
+	os << Colorize::greenBold(("Name: ")) << Colorize::redBold(play.getName()) << " "
+		<< Colorize::greenBold(("Price: ")) << Colorize::redBold(play.getPrice()) << " "
+		<< Colorize::greenBold(("Short Describtion: ")) << Colorize::yellowBold(play.getData()) << endl;
+	return os;
 }
 
 //BEOLVASAS
@@ -200,11 +244,9 @@ void Plays::jegyek_helyek_beolvas(ifstream &bemenet, Eloadas &eloadas)
 			break;
 
 		eloadas.spaces.push_back(vector<int>(line.size()));
-		eloadas.tickets.push_back(vector<Ticket>(line.size()));
 
 		for (char c : line) {
 			if (c - '0' == 0) {
-				eloadas.tickets[i][j] = Ticket(i, j, eloadas.nev, eloadas.date);
 				eloadas.sold_spaces++;
 			}
 			else

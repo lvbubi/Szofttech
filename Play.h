@@ -17,18 +17,27 @@ private:
 
 public:
     Play(const string &name,int price, int cost,int income,const string &data);
-	void PlayKiir()const;
+
+	///////////////////////
+	//////GETTEREK/////////
     string getName() const;
     int getPrice() const;
     int getCost() const;
     int getIncome() const;
     string getData() const;
-    bool friend operator< (const Play& lhs, const Play& rhs);
+    
+	//////////////////////////////////
+	/////////////SETTEREK/////////////
     void setName(const string &value);
     void setPrice(int value);
     void setCost(int value);
     void setIncome(int value);
     void setData(const string &value);
+
+	//////////////////////////////////
+	///////////OPERATOROK/////////////
+	friend ostream & operator <<(ostream & os, const Play & play);//kiiratas
+	bool friend operator< (const Play& lhs, const Play& rhs);
 	bool operator ==(const Play &c);
 };
 

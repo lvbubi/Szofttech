@@ -3,8 +3,11 @@
 void Customer::buyTicket() {
     try{
 		auto &szindarab = plays->getPlay();
-		auto &pair = plays->getTaroloPointer()->find(szindarab);
+		auto pair = plays->begin();
 
+		for (; pair->first.getName() != szindarab.getName(); pair++);//léptetés amíg a lekért elõadásig nem jutunk
+
+		
 		if(pair->second.size()==0)
 			throw string(szindarab.getName()+" nevu szindarabhoz nincsen eloadas.");
 
@@ -13,7 +16,7 @@ void Customer::buyTicket() {
         if(select_eloadas.free_spaces==0)
             throw string("Nincs szabad hely erre az eloadasra");
         //helyek megjelenítése
-		plays->showAuditorium(select_eloadas.spaces);
+		cout<<select_eloadas.spaces;
 
         unsigned int row,column;
         auto terem=spaces;
@@ -27,20 +30,20 @@ void Customer::buyTicket() {
 			do {
 				cout << "\nkivalasztott sor: ";
 				cin >> row;
-			} while (row >= select_eloadas.tickets.size());//túlindexelés lekezelése
+			} while (row >= select_eloadas.spaces.size());//túlindexelés lekezelése
 
 
-            if(row>0 && row < select_eloadas.tickets.size()){    
+            if(row>0 && row < select_eloadas.spaces.size()){
 				do {
 					cout << "\nkivalasztott oszlop: ";
 					cin >> column;
-				} while (column > select_eloadas.tickets[row].size());//túlindexelés lekezelése
+				} while (column > select_eloadas.spaces[row].size());//túlindexelés lekezelése
 
 				column--;
-				if(column < select_eloadas.tickets[row].size() && terem[row][column]!=0){
+				if(column < select_eloadas.spaces[row].size() && terem[row][column]!=0){
 					terem[row][column]=0;
 					osszeg+=szindarab.getPrice();
-					plays->showAuditorium(terem);
+					cout<<terem;
 				}
 				else
 					cout<<"Hibas adat, probalja ujra"<<endl;
@@ -64,7 +67,7 @@ void Customer::buyTicket() {
         if(Payment().Pay(customerId,osszeg))
             select_eloadas.spaces=terem;
 
-		plays->showAuditorium(select_eloadas.spaces);
+		cout<<select_eloadas.spaces;
 
     }catch(string s){
         cout<<s<<endl;

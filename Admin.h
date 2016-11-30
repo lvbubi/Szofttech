@@ -11,7 +11,7 @@ private:
      Plays* plays;
 
 public:
-
+	Admin(Plays * plays);
 
 	void checkReviews();
 

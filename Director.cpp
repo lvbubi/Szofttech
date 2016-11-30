@@ -7,40 +7,6 @@ Director::Director(Plays *plays):plays(plays)
 
 void Director::showAllStatistics() const
 {
-    auto MapPointer = plays->getTaroloPointer();
-
-
-    //MapPointer->erase(MapPointer->find(plays->getPlay()));//kiválasztott Szindarab törlése (kulcs)
-
-    ////////////////////////////////////////////////////////////////////////////////////////////////////////
-    //////////////// KULCS MODOSITAS////////////////////////////////////////////////////////////////////////
-    ////////////////////////////////////////////////////////////////////////////////////////////////////////
-    auto it = MapPointer->find(plays->getPlay());//KULCS KIVALASZTASA, ELTAROLASA ITERATORBA
-
-    pair < Play, list<Eloadas>> tmp = *it;		 //TMP LÉTREHOZÁSA ITERATORBOL
-    tmp.first.setName("A remeny hal meg utoljara");//TMP MÓDOSÍTÁSA
-
-    ///!!!!! MÓDOSÍTANI KELL A listában lévõ elõadások neveit!!!!!!
-    plays->setNameOfEloadasok(tmp.second, "A remeny hal meg utoljara");//EZ A FUGGVENY VEGIGITERAL a listan
-    //plays->listEloadasok(tmp.second);
-
-    MapPointer->erase(it);						 //KULCS-PÁR TÖRLÉSE A MAPBÕL
-    MapPointer->insert(tmp);					 //TMP BEILLESZTÉSE
-    ///////////////////////////////////////////////////////////////////////////////////////////////////////
-
-
-    //it = MapPointer->find(plays->getPlay()); //KULCS KIVÁLASZTÁSA
-    //auto &eloadas=plays->getEloadas(it->second);// A KIVALASZTOTT KULCS ELOADASAINAK KIIRATASA
-
-
-    //plays->listSzindarabok();//szindarabok kiiratasa
-    int j = 0;
-    it = MapPointer->begin();//az összes elõadás kiírása
-    for (; it != MapPointer->end(); it++) {
-        cout << ++j << ".) Szindarab:";
-        it->first.PlayKiir();
-        plays->listEloadasok(it->second);
-    }
 }
 
 
@@ -48,9 +14,10 @@ void Director::showStatictics()const  {
 
     //a kiválasztott elõadás statisztikai adatainak megtekintése
     //a rendszer megejeleníti az elõadás nevét és idõpontjait
-    const Play *akt=&(plays->getPlay());        //a const miatt kell a const(szindarab kivalasztva)
 
-    auto par= *(plays->getTarolo()).find(*akt);//kikeressük a színdarabhoz tartozó elõadásokat
+	auto par = plays->getPair();
+	const Play * akt = &par.first;       //a const miatt kell a const(szindarab kivalasztva)
+
     cout<<akt->getName()<<" idpontjai: "<<endl;            //majd megjelenítjük
     auto it=par.second.begin();
     int i=1;
@@ -82,10 +49,9 @@ void Director::showStatictics()const  {
 
 void Director::listPlaysBy(const mode &_mode) {
 
-    auto mappointer=plays->getTaroloPointer();
-    auto it=mappointer->begin();
+	auto it = plays->begin();
     vector<Play>e;
-    for(const auto &par:*mappointer)
+    for(const auto &par:*plays)
         e.push_back(par.first);
     function<int(const Play &a, const Play &b)> compare;
     switch(_mode){
@@ -115,22 +81,6 @@ void Director::listPlaysBy(const mode &_mode) {
 
 
     }
-
-
-
-
-    //std::sort(lista,[](const Play a, const Play b){return a.getPrice()<b.getPrice();});
-
-
-
-
-    list<pair<Play,list<Eloadas>>>parok;
-    for(const auto &par:*mappointer)
-        parok.push_back(par);
-
-    auto faszom=plays->getEloadas(parok.front().second);
-    cout<<endl<<endl<<"free spaces: "<<faszom.free_spaces<<endl<<"sold_spaces: "<<faszom.sold_spaces<<endl<<endl;
-
 }
 
 bool Director::start()

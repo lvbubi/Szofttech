@@ -17,28 +17,21 @@ int main()
 {
 
     Plays plays;
-    Customer c(&plays);
-    c.buyTicket();
-Director director(&plays);
 
-    /*cout << "SzinhazApp: " << endl;
+	Director director(&plays);
+	Customer customer(&plays);
+	Admin admin(&plays);
+	customer.buyTicket();
+    cout << "SzinhazApp: " << endl;
 	cout << "----------- \n" << endl;
 
 	string mainmenu[] = { "Eloadasok megtekintese","Jegyvasarlas","Vendegkonyvbe iras","Fizetes","Kilepes" };
-	Plays plays;
     string valami="valami";
 	bool exit = false;
 	int select_menu;
-	Director director(&plays);
 
-    director.start();
-    //director.listPlaysBy(valami);
-   //plays.listPlays();
-    //director.showAllStatistics();
-    director.showStatictics();
-    cout<<"anyad";
-	//plays.listSzindarabok();
-	//plays.listPlays();
+
+  
 	for (string s : mainmenu)//menu kiirasa
 		cout << s << endl;
 	cin >> select_menu;
@@ -76,12 +69,5 @@ Director director(&plays);
 			system(CLEAR);
         }
 	}
-	C_Datas random;
-	random.account_number = "1111-18179-11118-11181";
-	random.password = "FakePassword";
-	random.name = "NevemSenki";
-	random.birthDate = "1999.12.12";
-	Payment fizetes;
-    fizetes.Pay(random, 10000000);*/
 	return 0;
 }
