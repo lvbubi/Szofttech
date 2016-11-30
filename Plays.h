@@ -1,4 +1,4 @@
-#ifndef PLAYS_H
+ï»¿#ifndef PLAYS_H
 #define PLAYS_H
 
 #include <vector>
@@ -42,6 +42,7 @@ struct Eloadas {
 		}
 		return os;
 	}
+
 };
 
 
@@ -51,21 +52,36 @@ class Plays{
 
 private:
 	map<Play, list<Eloadas>> Tarolo;
+
+
+	void szindarabok_kiir() const;
+	void eloadasok_kiir() const;
 	void szindarabok_beolvas();
 	void eloadasok_beolvas();
 	void jegyek_helyek_beolvas(ifstream &bemenet, Eloadas &eloadas);
 public:
 	Plays();
+	~Plays();
 	Plays(Plays &&) = default;
-    friend inline ostream & operator <<(ostream & os, const vector<vector<int>> &spaces){//Helyek megjelenitese
-    system(CLEAR);
-    for (vector<int> sor : spaces) {
-        for (int oszlop : sor)
-            os << oszlop;
-        os << endl;
-    }
-    return os;
-    }
+
+	void showSpaces(const vector<vector<int>> &spaces) {//Helyek megjelenitese
+		system(CLEAR);
+
+		for (vector<int> sor : spaces) {
+			cout << endl;
+			for (int i = 0; i < sor.size(); i++) {
+				cout <<"___";
+			}
+			cout << endl;
+			for (int oszlop : sor)
+				if (oszlop == 0)
+					cout <<Colorize::redBackground("  ")<<"|";
+				else
+					cout << Colorize::greenBackground("  ")<<"|";
+		}
+		cout<<endl;
+	}
+	
 	map<Play, list<Eloadas>>::iterator begin();//begin a foreachez
 	map<Play, list<Eloadas>>::iterator end(); //end a foreachez
 
@@ -75,18 +91,23 @@ public:
 	void listPlays()const;
 	
 	////////////////////////////////////////////////
-	//////////////getter funkciók///////////////////
+	//////////////getter funkciÃ³k///////////////////
 	const Play& getPlay()const;
 	Eloadas & getEloadas(list<Eloadas> &eloadasok);
 	pair<Play, list<Eloadas>> getPair();
     string makeDescription();
 
 	////////////////////////////////////////////////
-	////////////////Módosító függvények/////////////
+	////////////////MÃ³dosÃ­tÃ³ fÃ¼ggvÃ©nyek/////////////
 	void swapSzindarab(pair<Play, list<Eloadas>> &position, pair<Play, list<Eloadas>> &swap);
 	void setNameOfEloadasok(list<Eloadas> &eloadasok,const string &nev);
+<<<<<<< HEAD
     void addPair(pair<Play,list<Eloadas> > &ujEloadas);
     void removePair(pair<Play, list<Eloadas> > &dpair);
+=======
+
+	
+>>>>>>> origin/master
 };
 
 #endif //PLAYS_H

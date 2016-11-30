@@ -17,7 +17,7 @@ void Customer::buyTicket() {
         if(select_eloadas.free_spaces==0)
             throw string("Nincs szabad hely erre az eloadasra");
         //helyek megjelenítése
-        //cout<<select_eloadas.spaces;
+		plays->showSpaces(select_eloadas.spaces);
 
         unsigned int row,column;
         auto terem=spaces;
@@ -44,7 +44,7 @@ void Customer::buyTicket() {
 				if(column < select_eloadas.spaces[row].size() && terem[row][column]!=0){
 					terem[row][column]=0;
 					osszeg+=szindarab.getPrice();
-                    //cout<<terem;
+					plays->showSpaces(terem);
 				}
 				else
 					cout<<"Hibas adat, probalja ujra"<<endl;
@@ -68,7 +68,7 @@ void Customer::buyTicket() {
         if(Payment().Pay(customerId,osszeg))
             select_eloadas.spaces=terem;
 
-        //cout<<select_eloadas.spaces;
+        plays->showSpaces(select_eloadas.spaces);
 
     }catch(string s){
         cout<<s<<endl;
