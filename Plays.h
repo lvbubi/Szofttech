@@ -79,11 +79,14 @@ public:
 	const Play& getPlay()const;
 	Eloadas & getEloadas(list<Eloadas> &eloadasok);
 	pair<Play, list<Eloadas>> getPair();
+    string makeDescription();
 
 	////////////////////////////////////////////////
 	////////////////Módosító függvények/////////////
 	void swapSzindarab(pair<Play, list<Eloadas>> &position, pair<Play, list<Eloadas>> &swap);
 	void setNameOfEloadasok(list<Eloadas> &eloadasok,const string &nev);
+    void addPair(pair<Play,list<Eloadas> > &ujEloadas);
+    void removePair(pair<Play, list<Eloadas> > &dpair);
 };
 
 #endif //PLAYS_H

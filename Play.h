@@ -17,7 +17,7 @@ private:
 
 public:
     Play(const string &name,int price, int cost,int income,const string &data);
-
+    Play();
 	///////////////////////
 	//////GETTEREK/////////
     string getName() const;
@@ -25,6 +25,7 @@ public:
     int getCost() const;
     int getIncome() const;
     string getData() const;
+
     
 	//////////////////////////////////
 	/////////////SETTEREK/////////////

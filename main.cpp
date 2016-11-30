@@ -21,7 +21,7 @@ int main()
 	Director director(&plays);
 	Customer customer(&plays);
 	Admin admin(&plays);
-	customer.buyTicket();
+    //customer.buyTicket();
     cout << "SzinhazApp: " << endl;
 	cout << "----------- \n" << endl;
 
@@ -42,6 +42,7 @@ int main()
 		case 1:plays.listPlays();
 			break;
 		case 2://buy ticket
+            plays.listSzindarabok();
 			break;
 		case 3://vendegkonyv
 			break;
@@ -53,6 +54,9 @@ int main()
 			//admin belepes, if pw==pw id==id{
 			//Admin admin(&plays);
 			//(ciklus)admin.tovabbi fuggvenyek;
+            //admin.addPlay();
+            //admin.removePlay();
+            admin.editPlay();
 			
 			break;
 		case 777:
