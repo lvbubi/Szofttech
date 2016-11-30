@@ -66,3 +66,8 @@ Play::Play(const string &name, int price, int cost, int income, const string &da
 {
 
 }
+
+Play::Play()
+{
+
+}

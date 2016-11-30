@@ -3,6 +3,7 @@
 
 #include "GuestBook.h"
 #include "Plays.h"
+#include "Play.h"
 
 class Admin {
 

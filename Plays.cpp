@@ -8,10 +8,16 @@ Plays::Plays()
 
 }
 
+Plays::~Plays()
+{
+	szindarabok_kiir();
+	eloadasok_kiir();
+}
+
 void Plays::swapSzindarab(pair<Play, list<Eloadas>> &position,pair<Play, list<Eloadas>>& swap)
 {
-	Tarolo.erase(Tarolo.find(position.first));	 //KULCS-PÁR TÖRLÉSE A MAPBÕL
-	Tarolo.insert(swap);					 //TMP BEILLESZTÉSE
+	Tarolo.erase(Tarolo.find(position.first));	 //KULCS-Pï¿½R Tï¿½RLï¿½SE A MAPBï¿½L
+	Tarolo.insert(swap);					 //TMP BEILLESZTï¿½SE
 }
 
 map<Play, list<Eloadas>>::iterator Plays::begin()
@@ -25,7 +31,7 @@ map<Play, list<Eloadas>>::iterator Plays::end()
 }
 
 void Plays::listSzindarabok()const  {
-	system(CLEAR);
+    //system(CLEAR);
 	cout << "Szindarabok: " << endl;
 	cout << "-------------" << endl;
 	int i = 1;
@@ -37,15 +43,15 @@ void Plays::listSzindarabok()const  {
 }
 const Play & Plays::getPlay() const
 {
-	system(CLEAR);
+    system(CLEAR);
 	// play kivalaszt
-	listSzindarabok();
+    listSzindarabok();
 	auto it = Tarolo.begin();
 	cout << "Szindarab Kivalasztasa: " << endl;
 	cout << "-------------" << endl;
 	unsigned int idx = 0;
 	do {
-		cout << "Kerek egy indexet";
+        cout << "Kerek egy indexet ";
 		cin >> idx;
 	} while (idx > Tarolo.size());
 	it = Tarolo.begin();
@@ -72,9 +78,9 @@ Eloadas & Plays::getEloadas(list<Eloadas> &eloadasok)
 
 pair<Play, list<Eloadas>> Plays::getPair()
 {
-	system(CLEAR);
+
 	// play kivalaszt
-	listSzindarabok();
+    listSzindarabok();
 	auto it = Tarolo.begin();
 	cout << "Szindarab Kivalasztasa: " << endl;
 	cout << "-------------" << endl;
@@ -85,11 +91,35 @@ pair<Play, list<Eloadas>> Plays::getPair()
 	} while (idx > Tarolo.size() || idx<=0);
 	
 	it = Tarolo.begin();
-	for (unsigned int i = 1; i < idx; i++)//proba hatahamegy
+    for (unsigned int i = 1; i < idx; i++)
 		it++;
 
 	pair<Play, list<Eloadas>> par=*it;
-	return  par;
+    return  par;
+}
+
+string Plays::makeDescription()
+{
+    string description;
+    char end;
+        bool finished = false;
+
+        while(finished!=true)
+        {
+            end= getchar();
+            if(end!='*')
+            {
+                description+=end;
+            }
+            else
+            {
+                finished=true;
+
+            }
+        }
+
+    return description;
+
 }
 
 
@@ -114,6 +144,7 @@ void Plays::listPlays() const
 	}
 
 	cout << "-------------" << endl;
+
 }
 
 
@@ -121,7 +152,18 @@ void Plays::listPlays() const
 void Plays::setNameOfEloadasok(list<Eloadas>& eloadasok, const string & nev)
 {
 	for (Eloadas &eloadas : eloadasok)
-		eloadas.nev = nev;
+        eloadas.nev = nev;
+}
+
+void Plays::addPair(pair<Play,list<Eloadas>> &ujEloadas )
+{
+    Tarolo.insert(pair<Play,list<Eloadas>>(ujEloadas));
+}
+
+void Plays::removePair(pair<Play, list<Eloadas> > &dpair)
+{
+
+    Tarolo.erase(dpair.first);
 }
 
 bool operator<(const Play & lhs, const Play & rhs)
@@ -136,6 +178,50 @@ ostream & operator<<(ostream & os, const Play & play)
 		<< Colorize::greenBold(("Short Describtion: ")) << Colorize::yellowBold(play.getData()) << endl;
 	return os;
 }
+
+void Plays::szindarabok_kiir()const
+{
+	string kiiras = "";
+	ofstream output("szindarabok.txt");
+	if (output.is_open())
+	{
+		for (auto &par : Tarolo) {
+			output << par.first.getName() << '\t';
+			output << par.first.getPrice() << '\t';
+			output << par.first.getCost() << '\t';
+			int income = 0;
+			for (auto &eloadas : par.second) {
+				income+=eloadas.sold_spaces*par.first.getPrice();
+			}
+			output << income ;
+			output << par.first.getData().erase(0,1) << endl<< '*'<<endl;//sortores kiszedese a sztring elejerol (erase)
+		}
+	}
+	output.close();
+}
+
+void Plays::eloadasok_kiir() const
+{
+	ofstream output("terem.txt");
+	string fajlbair = "";
+	if(output.is_open())
+	for (auto &par : Tarolo)
+		for (auto &eloadas : par.second) {
+			fajlbair += par.first.getName() + '\t';
+			fajlbair += eloadas.date;
+			for (auto sor : eloadas.spaces) {
+				for (int oszlop : sor)
+					fajlbair+='0'+oszlop;
+				fajlbair += '\n';
+			}
+			fajlbair+="*\n";
+		}
+	fajlbair.pop_back();
+	output << fajlbair;
+	output.close();
+}
+
+
 
 //BEOLVASAS
 void Plays::szindarabok_beolvas()
@@ -152,12 +238,13 @@ void Plays::szindarabok_beolvas()
 			data = "";
 			input >> name >> price >> cost >> income;
 			do {//beolvasssa a describtiont mig *ot nem kap
-				data += "\n";
+				data += '\n';
 				getline(input, line);
 				data += line;
+				
 			} while (line[0] != '*');
-			data.pop_back();//* törlése
-			data.pop_back();// "\n" törlése
+			data.pop_back();//* tï¿½rlï¿½se
+			data.pop_back();// "\n" tï¿½rlï¿½se
 			Play tmp(name, price, cost, income, data);
 			Tarolo[tmp] = list<Eloadas>();
 		}
