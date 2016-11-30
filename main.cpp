@@ -1,17 +1,13 @@
-#include <iostream>
-#include <string>
-#include <fstream>
 #include "Plays.h"
-#include <string>
 #include "Admin.h"
-#include "Payment.h"
-#include <cstdlib>
-#include <algorithm>
+#include "Customer.h"
 #include "Director.h"
-#include <functional>
-#include"Customer.h"
-#include "GuestBook.h"
-
+#include <thread>
+#include <chrono>
+#include <Mmsystem.h>
+#include <mciapi.h>
+//these two headers are already included in the <Windows.h> header
+#pragma comment(lib, "Winmm.lib")
 using namespace std;
 
 #ifdef _WIN32
@@ -25,12 +21,15 @@ void welcomeScreen();
 
 int main()
 {
+	mciSendString("open \"music.mp3\" type mpegvideo alias mp3", NULL, 0, NULL);
+	mciSendString("play mp3", NULL, 0, NULL);
 	welcomeScreen();
+	Payment payment;
     Plays plays;
 	GuestBook guestbook;
     Director director(&plays);
 	Admin admin(&plays);
-	Customer customer(&plays, &guestbook);
+	Customer customer(&plays, &guestbook,payment);
 
 	bool exit = false;
 	cout << "\n\nNyomjon egy gombot a folytatashoz: ";
@@ -64,5 +63,8 @@ void welcomeScreen() {
 		while (getline(input, line))
 			welcome += line + "\n";
 	}
-	cout << Colorize::yellowBold(welcome);
+	for (char s : welcome) {
+		cout << Colorize::yellowBold(s);
+		this_thread::sleep_for(chrono::milliseconds(1));
+	}
 }

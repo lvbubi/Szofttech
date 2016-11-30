@@ -65,7 +65,7 @@ void Customer::buyTicket() {
         cout<<endl<<"jelszo: ";
         cin>>password;
         C_Datas customerId(name,birthDate,account_number,password);
-        if(Payment().Pay(customerId,osszeg))
+        if(fizetes.Pay(customerId,osszeg))
             select_eloadas.spaces=terem;
 
         plays->showSpaces(select_eloadas.spaces);
@@ -79,7 +79,7 @@ void Customer::buyTicket() {
 
 }
 
-Customer::Customer(Plays *plays, GuestBook *GBook):plays(plays),GBook(GBook)
+Customer::Customer(Plays *plays, GuestBook *GBook, Payment & payment):plays(plays),GBook(GBook),fizetes(payment)
 {
 
 }

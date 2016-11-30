@@ -12,7 +12,7 @@ private:
 	Payment fizetes;
 public:
     void buyTicket();
-    Customer(Plays * plays,GuestBook* GBook);
+    Customer(Plays * plays,GuestBook* GBook, Payment & payment);
     void writeReview(const string &name, const string &label, const string &comment);
     bool start();
 };
