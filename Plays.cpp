@@ -181,6 +181,7 @@ ostream & operator<<(ostream & os, const Play & play)
 
 void Plays::szindarabok_kiir()const
 {
+	string kiiras = "";
 	ofstream output("szindarabok.txt");
 	if (output.is_open())
 	{
@@ -202,19 +203,21 @@ void Plays::szindarabok_kiir()const
 void Plays::eloadasok_kiir() const
 {
 	ofstream output("terem.txt");
-
+	string fajlbair = "";
 	if(output.is_open())
 	for (auto &par : Tarolo)
 		for (auto &eloadas : par.second) {
-			output << par.first.getName() << '\t';
-			output << eloadas.date;
+			fajlbair += par.first.getName() + '\t';
+			fajlbair += eloadas.date;
 			for (auto sor : eloadas.spaces) {
 				for (int oszlop : sor)
-					output << oszlop;
-				output << endl;
+					fajlbair+='0'+oszlop;
+				fajlbair += '\n';
 			}
-			output << '*' << endl;
+			fajlbair+="*\n";
 		}
+	fajlbair.pop_back();
+	output << fajlbair;
 	output.close();
 }
 

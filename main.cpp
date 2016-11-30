@@ -19,8 +19,9 @@ int main()
     Plays plays;
 
 	Director director(&plays);
-	Customer customer(&plays);
+	//Customer customer(&plays);
 	Admin admin(&plays);
+	plays.listPlays();
     //customer.buyTicket();
     cout << "SzinhazApp: " << endl;
 	cout << "----------- \n" << endl;
@@ -28,7 +29,7 @@ int main()
 	string mainmenu[] = { "Eloadasok megtekintese","Jegyvasarlas","Vendegkonyvbe iras","Fizetes","Kilepes" };
     string valami="valami";
 	bool exit = false;
-	int select_menu;
+	unsigned int select_menu;
 
 
   

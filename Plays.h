@@ -69,7 +69,7 @@ public:
 
 		for (vector<int> sor : spaces) {
 			cout << endl;
-			for (int i = 0; i < sor.size(); i++) {
+			for (unsigned int i = 0; i < sor.size(); i++) {
 				cout <<"___";
 			}
 			cout << endl;
@@ -101,13 +101,13 @@ public:
 	////////////////Módosító függvények/////////////
 	void swapSzindarab(pair<Play, list<Eloadas>> &position, pair<Play, list<Eloadas>> &swap);
 	void setNameOfEloadasok(list<Eloadas> &eloadasok,const string &nev);
-<<<<<<< HEAD
+
     void addPair(pair<Play,list<Eloadas> > &ujEloadas);
     void removePair(pair<Play, list<Eloadas> > &dpair);
-=======
+
 
 	
->>>>>>> origin/master
+
 };
 
 #endif //PLAYS_H

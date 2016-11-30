@@ -38,7 +38,7 @@ void Director::showStatictics()const  {
     }
     it=par.second.begin();
 
-    for(int i=1;i<idx;i++){
+    for(unsigned int i=1;i<idx;i++){
         it++;
     }
     //az idoponthoz tartozo statisztikai adatok megjelenitese
