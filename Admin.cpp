@@ -2,12 +2,15 @@
 #include "Admin.h"
 
 
-Admin::Admin(Plays * plays):plays(plays)
+Admin::Admin(Plays * plays,GuestBook* Gbook):plays(plays),GBook(Gbook)
 {
 }
 
 void Admin::checkReviews() {
-	throw "Not yet implemented";
+
+
+
+
 }
 
 void Admin::addPlay() {
@@ -63,33 +66,34 @@ void Admin::removePlay() {
 }
 
 void Admin::editPlay() {
-	////////////////////////////////////////////////////////////////////////////////////////////////////////
-	//////////////// KULCS MODOSITAS////////////////////////////////////////////////////////////////////////
-	////////////////////////////////////////////////////////////////////////////////////////////////////////
-
 
 
     vector<string> options= {"Name","Price","Cost","Data"};
 
-    cout << "What would you like to edit? \n";
-    cout << "------------------------------ " << endl;
-    int j=0;
-    for(string i : options)
-    {
-        cout << j+1 <<". " << i << endl;
-        j++;
-    }
-    int cmd;
-    cout << "Select: ";
-    cin >> cmd;
-    cout << "------------------------------ " << endl;
+    bool finished=false;
 
 
-    auto position = plays->getPair();
-    auto par = position;
+    do{
 
-    string tmp1;
-    int tmp2;
+        cout << "What would you like to edit? \n";
+        cout << "------------------------------ " << endl;
+        int j=0;
+        for(string i : options)
+        {
+            cout << j+1 <<". " << i << endl;
+            j++;
+        }
+        int cmd;
+        cout << "Select: ";
+        cin >> cmd;
+        cout << "------------------------------ " << endl;
+
+        auto position = plays->getPair();
+        auto par = position;
+
+        string tmp1;
+        int tmp2;
+
 
     switch(cmd)
     {
@@ -104,30 +108,41 @@ void Admin::editPlay() {
         case 2:
              cout << "Change price to: ";
              cin >> tmp2;
+             cout << "--------------" << endl;
              par.first.setPrice(tmp2);
+             plays->swapSzindarab(position,par);
             break;
         case 3:
              cout << "Change cost to: ";
              cin >> tmp2;
+              cout << "--------------" << endl;
              par.first.setCost(tmp2);
+             plays->swapSzindarab(position,par);
             break;
         case 4:
              cout << "Change data to: ";
              tmp1=plays->makeDescription();
+             cout << "--------------" << endl;
              par.first.setData(tmp1);
+             plays->swapSzindarab(position,par);
             break;
 
     }
 
+    string answer;
+    cout << "Would you like to change something else ? ( Y / N ) " << endl;
+    cin>>answer;
+    cout << "--------------" << endl;
+    if(answer=="N")
+    {
+        finished = true;
+    }
+
+
+    }while(finished!=true);
 
 
 
-
-
-///	plays->listSzindarabok();
-//	plays->listPlays();
-    //int szam;
-//	cin >> szam;
 }
 
 

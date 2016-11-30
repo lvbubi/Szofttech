@@ -8,11 +8,12 @@
 class Admin {
 
 private:
-     GuestBook* GBook;
-     Plays* plays;
+    Plays* plays;
+    GuestBook* GBook;
+
 
 public:
-	Admin(Plays * plays);
+    Admin(Plays * plays,GuestBook* Gbook);
 
 	void checkReviews();
 

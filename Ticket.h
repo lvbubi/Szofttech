@@ -19,14 +19,14 @@ public:
 
 	void setPrice(int price);
 
-	void getRow();
+
 
 	void setRow(int row);
 
-	void getColumn();
+
 
 	void setColumn(int column);
 
-	void getDatas();
+
 };
 #endif //TICKET_H
