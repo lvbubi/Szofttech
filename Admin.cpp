@@ -2,12 +2,39 @@
 #include "Admin.h"
 
 
-Admin::Admin(Plays * plays):plays(plays)
+Admin::Admin(Plays * plays, GuestBook *GBook):plays(plays),GBook(GBook)
 {
 }
 
 void Admin::checkReviews() {
-	throw "Not yet implemented";
+    unsigned i=0;
+    auto reviews=GBook->getReviews();
+    for(auto review:reviews){
+        if(review.getChecked()==false){
+        cout<<++i<<".)"<<endl;
+            review.print();
+            cout<<endl;
+        }
+        }
+
+    cout<<"valassza ki a engedelyezendo velemenyt"<<endl;
+
+    do{
+    cout<<"valasztas: ";
+    cin>>i;
+    cout<<endl;
+    }while(i<=0 && i>GBook->getReviews().size());
+
+    auto it=GBook->getReviews().begin();
+
+    for(unsigned j=0;j<i;j++){
+        it++;
+    }
+
+    it->setChecked(true);
+
+
+
 }
 
 void Admin::addPlay() {

@@ -80,3 +80,9 @@ GuestBook::~GuestBook()
 	}
 	output.close();
 }
+
+list<Review> &GuestBook::getReviews()
+{
+    return reviews;
+}
+

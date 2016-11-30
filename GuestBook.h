@@ -4,6 +4,7 @@
 #include <list>
 #include "Review.h"
 #include<fstream>
+#include<iostream>
 
 using namespace std;
 class GuestBook {
@@ -18,5 +19,6 @@ public:
 
     void addReview(const string& name,const string&label,const string& comment);    //review hozzáadása
     ~GuestBook();                   //ide még meg kéne írni a fájlba írást
+    list<Review> & getReviews();
 };
 #endif //GUESTBOOK_H
