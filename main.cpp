@@ -18,7 +18,7 @@ int main()
 
     Plays plays;
     GuestBook gbook;
-    gbook.listReviews(true);
+    gbook.listReviews(false);
 	Director director(&plays);
     Customer customer(&plays,&gbook);
 	Admin admin(&plays);

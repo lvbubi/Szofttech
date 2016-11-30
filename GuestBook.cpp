@@ -34,6 +34,7 @@ GuestBook::GuestBook()
                 tmp.setChecked(false);
 
             reviews.push_back(tmp); // load reviews
+            comment="";
 
             input>>checked;
         }
