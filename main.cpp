@@ -17,7 +17,7 @@ int main()
 {
 
     Plays plays;
-
+/*
 	Director director(&plays);
 	Customer customer(&plays);
 	Admin admin(&plays);
@@ -68,6 +68,6 @@ int main()
             cin >> select_menu;
 			system(CLEAR);
         }
-	}
+	}*/
 	return 0;
 }

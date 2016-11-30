@@ -8,6 +8,12 @@ Plays::Plays()
 
 }
 
+Plays::~Plays()
+{
+	szindarabok_kiir();
+	eloadasok_kiir();
+}
+
 void Plays::swapSzindarab(pair<Play, list<Eloadas>> &position,pair<Play, list<Eloadas>>& swap)
 {
 	Tarolo.erase(Tarolo.find(position.first));	 //KULCS-PÁR TÖRLÉSE A MAPBÕL
@@ -137,6 +143,47 @@ ostream & operator<<(ostream & os, const Play & play)
 	return os;
 }
 
+void Plays::szindarabok_kiir()const
+{
+	ofstream output("szindarabok.txt");
+	if (output.is_open())
+	{
+		for (auto &par : Tarolo) {
+			output << par.first.getName() << '\t';
+			output << par.first.getPrice() << '\t';
+			output << par.first.getCost() << '\t';
+			int income = 0;
+			for (auto &eloadas : par.second) {
+				income+=eloadas.sold_spaces*par.first.getPrice();
+			}
+			output << income ;
+			output << par.first.getData().erase(0,1) << endl<< '*'<<endl;//sortores kiszedese a sztring elejerol (erase)
+		}
+	}
+	output.close();
+}
+
+void Plays::eloadasok_kiir() const
+{
+	ofstream output("terem.txt");
+
+	if(output.is_open())
+	for (auto &par : Tarolo)
+		for (auto &eloadas : par.second) {
+			output << par.first.getName() << '\t';
+			output << eloadas.date;
+			for (auto sor : eloadas.spaces) {
+				for (int oszlop : sor)
+					output << oszlop;
+				output << endl;
+			}
+			output << '*' << endl;
+		}
+	output.close();
+}
+
+
+
 //BEOLVASAS
 void Plays::szindarabok_beolvas()
 {
@@ -152,9 +199,10 @@ void Plays::szindarabok_beolvas()
 			data = "";
 			input >> name >> price >> cost >> income;
 			do {//beolvasssa a describtiont mig *ot nem kap
-				data += "\n";
+				data += '\n';
 				getline(input, line);
 				data += line;
+				
 			} while (line[0] != '*');
 			data.pop_back();//* törlése
 			data.pop_back();// "\n" törlése
