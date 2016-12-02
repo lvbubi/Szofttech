@@ -7,15 +7,25 @@ Admin::Admin(Plays * plays, GuestBook *GBook):plays(plays),GBook(GBook)
 }
 
 void Admin::checkReviews() {
+    try{
     unsigned i=0;
     auto reviews=GBook->getReviews();
+    //ha nincs ellenorizendo velemeny azt le kell kezelni
+    bool allchecked=true;
+    for(auto review:reviews){
+        if(!review.getChecked())
+            allchecked=false;
+    }
+    if(allchecked)
+        throw string("nincs uj bejegyzes/velemeny");
+
     for(auto review:reviews){
         if(review.getChecked()==false){
         cout<<++i<<".)"<<endl;
             review.print();
             cout<<endl;
         }
-        }
+    }
 
     cout<<"valassza ki a engedelyezendo velemenyt"<<endl;
 
@@ -33,8 +43,9 @@ void Admin::checkReviews() {
 
     it->setChecked(true);
 
-
-
+    }catch(string s){
+            cout<<s<<endl;
+    }
 }
 
 void Admin::addPlay() {
@@ -154,7 +165,32 @@ void Admin::editPlay() {
 ///	plays->listSzindarabok();
 //	plays->listPlays();
     //int szam;
-//	cin >> szam;
+    //	cin >> szam;
+}
+
+bool Admin::start()
+{
+    string admin_menu[] = {"Eloadas hozzaadas" ,"Eloadas modositas","Eloadas torles","Bejegyzesek jovahagyasa","Kilepes"};
+
+    bool finished=false;
+    int select;
+    while(finished!=true){
+        int i=1;
+        for(string menupont:admin_menu)
+            cout<<i++<<".)"<<menupont<<endl;
+        cout<<"choose: ";
+        cin>>select;
+        switch(select){
+        case 1:addPlay();break;
+        case 2:editPlay();break;
+        case 3:removePlay();break;
+        case 4:checkReviews();break;
+        case 5:
+            finished=true;break;
+        }
+    }
+    return finished;
+
 }
 
 
