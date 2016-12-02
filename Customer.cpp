@@ -110,6 +110,7 @@ bool Customer::start()
             cout<<i++<<".)"<<menupont<<endl;
         cout<<"choose: ";
         cin>>select;
+		system(CLEAR);
         switch(select){
          case 1:buyTicket();break;
          case 2:

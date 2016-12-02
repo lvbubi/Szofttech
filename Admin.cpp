@@ -156,6 +156,7 @@ void Admin::start()
 			cout << i++ << ".) " << s << endl;
 		i = 1;
 		cin >> select_menu;
+		system(CLEAR);
 		switch (select_menu[0] - '0') {
 		case 1:checkReviews(); break;
 		case 2:addPlay(); break;//kezeld le mikor létezõ szindarabot adnál hozzá (ugyan az a név ne lehessen)

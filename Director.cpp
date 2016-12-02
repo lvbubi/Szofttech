@@ -104,6 +104,7 @@ bool Director::start()
             cout<<i++<<".)"<<menupont<<endl;
         cout<<"choose: ";
         cin>>select;
+		system(CLEAR);
         switch(select){
         case 1:showStatictics();break;
         case 2:

@@ -1,26 +1,6 @@
-﻿  main.cpp
-c:\users\lvbubi\documents\github\szofttech\admin.h(27): error C2556: 'void Admin::start(void)': overloaded function differs only by return type from 'bool Admin::start(void)'
-  c:\users\lvbubi\documents\github\szofttech\admin.h(25): note: see declaration of 'Admin::start'
-c:\users\lvbubi\documents\github\szofttech\admin.h(27): error C2371: 'Admin::start': redefinition; different basic types
-  c:\users\lvbubi\documents\github\szofttech\admin.h(25): note: see declaration of 'Admin::start'
+﻿  Director.cpp
+  Customer.cpp
   Admin.cpp
-c:\users\lvbubi\documents\github\szofttech\admin.h(27): error C2556: 'void Admin::start(void)': overloaded function differs only by return type from 'bool Admin::start(void)'
-  c:\users\lvbubi\documents\github\szofttech\admin.h(25): note: see declaration of 'Admin::start'
-c:\users\lvbubi\documents\github\szofttech\admin.h(27): error C2371: 'Admin::start': redefinition; different basic types
-  c:\users\lvbubi\documents\github\szofttech\admin.h(25): note: see declaration of 'Admin::start'
-c:\users\lvbubi\documents\github\szofttech\admin.cpp(10): error C2059: syntax error: '<<'
-c:\users\lvbubi\documents\github\szofttech\admin.cpp(12): error C2059: syntax error: '=='
-c:\users\lvbubi\documents\github\szofttech\admin.cpp(13): error C2143: syntax error: missing ';' before '{'
-c:\users\lvbubi\documents\github\szofttech\admin.cpp(14): error C2059: syntax error: '>>'
-c:\users\lvbubi\documents\github\szofttech\admin.cpp(28): error C2065: 'i': undeclared identifier
-c:\users\lvbubi\documents\github\szofttech\admin.cpp(38): error C2065: 'i': undeclared identifier
-c:\users\lvbubi\documents\github\szofttech\admin.cpp(40): error C2065: 'i': undeclared identifier
-c:\users\lvbubi\documents\github\szofttech\admin.cpp(44): error C2065: 'i': undeclared identifier
-c:\users\lvbubi\documents\github\szofttech\admin.cpp(50): error C2059: syntax error: 'catch'
-c:\users\lvbubi\documents\github\szofttech\admin.cpp(50): error C2143: syntax error: missing ';' before '{'
-c:\users\lvbubi\documents\github\szofttech\admin.cpp(51): error C2065: 's': undeclared identifier
-c:\users\lvbubi\documents\github\szofttech\admin.cpp(161): error C2059: syntax error: '<<'
-c:\users\lvbubi\documents\github\szofttech\admin.cpp(163): error C2143: syntax error: missing ';' before '{'
-c:\users\lvbubi\documents\github\szofttech\admin.cpp(163): error C2447: '{': missing function header (old-style formal list?)
-c:\users\lvbubi\documents\github\szofttech\admin.cpp(246): error C2059: syntax error: '>>'
   Generating Code...
+  SzofttechVisualStudo.vcxproj -> C:\Users\lvbubi\Documents\GitHub\Szofttech\Debug\SzofttechVisualStudo.exe
+  SzofttechVisualStudo.vcxproj -> C:\Users\lvbubi\Documents\GitHub\Szofttech\Debug\SzofttechVisualStudo.pdb (Partial PDB)
