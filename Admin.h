@@ -22,7 +22,8 @@ public:
 	void removePlay();
 
 	void editPlay();
-    bool start();
+
+    void addEloadas();
 
 	void start();
 

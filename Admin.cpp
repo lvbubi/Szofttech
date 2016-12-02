@@ -94,7 +94,7 @@ void Admin::editPlay() {
     int cmd;
 	cout << "What would you like to edit? \n";
 	cout << "------------------------------ " << endl;
-    auto &position = plays->getPair();
+    auto position = plays->getPair();
     auto par = position;//kell az es kulonben nem modosul
 	bool exit = false;
     string tmp1;
@@ -141,12 +141,44 @@ void Admin::editPlay() {
 		case 5:exit = true; break;
 		}
 	} while (!exit);
-	plays->swapSzindarab(position, par);//itt módosítsuk
+    plays->swapSzindarab(position, par);//itt mï¿½dosï¿½tsuk
+}
+
+void Admin::addEloadas()
+{
+    Eloadas tmp;
+
+    int date;
+    int row;
+    int col;
+
+    string tmp3;
+
+    auto &play = plays->getPair();
+
+    tmp.nev=play.first.getName();
+
+    cout << "New eloadas keszitese" << endl;
+    cout << "-------------------" << endl;
+    cout << "Date: " ;
+    cin >> date;
+    cout << "Theatre size: " << endl;
+    cout << "Column: ";
+    cin >> col;
+    cout << "Row: ";
+    cin >> row;
+
+    tmp.spaces=vector<vector<int>>(row,vector<int>(col,1));
+
+    play.second.push_back(tmp);
+
+
+
 }
 
 void Admin::start()
 {
-	string menu[] = { "Check Reviews","Szindarab hozzaadasa", "Szindarab módosítasa","Szindarab torlese","Eloadas hozzaadasa","Exit" };
+	string menu[] = { "Check Reviews","Szindarab hozzaadasa", "Szindarab mï¿½dosï¿½tasa","Szindarab torlese","Eloadas hozzaadasa","Exit" };
 	bool exit = false;
 	string select_menu;
 	int i = 1;
@@ -158,7 +190,7 @@ void Admin::start()
 		cin >> select_menu;
 		switch (select_menu[0] - '0') {
 		case 1:checkReviews(); break;
-		case 2:addPlay(); break;//kezeld le mikor létezõ szindarabot adnál hozzá (ugyan az a név ne lehessen)
+		case 2:addPlay(); break;//kezeld le mikor lï¿½tezï¿½ szindarabot adnï¿½l hozzï¿½ (ugyan az a nï¿½v ne lehessen)
 		case 3:editPlay(); break;
 		case 4:removePlay(); break;
 		case 5:break;//add eloadas
