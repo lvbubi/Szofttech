@@ -23,5 +23,7 @@ public:
 
 	void editPlay();
 
+	void start();
+
 };
 #endif // ADMIN_H

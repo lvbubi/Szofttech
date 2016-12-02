@@ -12,15 +12,14 @@ void Customer::buyTicket() {
 		if(pair->second.size()==0)
 			throw string(szindarab.getName()+" nevu szindarabhoz nincsen eloadas.");
 
-        auto select_eloadas=plays->getEloadas(pair->second);
-        auto spaces=select_eloadas.spaces;
+        auto &select_eloadas=plays->getEloadas(pair->second);
         if(select_eloadas.free_spaces==0)
             throw string("Nincs szabad hely erre az eloadasra");
         //helyek megjelenítése
 		plays->showSpaces(select_eloadas.spaces);
 
         unsigned int row,column;
-        auto terem=spaces;
+        auto terem= select_eloadas.spaces;
         int osszeg=0;
 		
 
