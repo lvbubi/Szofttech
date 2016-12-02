@@ -67,6 +67,8 @@ void Customer::buyTicket() {
         if(fizetes.Pay(customerId,osszeg))
             select_eloadas.spaces=terem;
 
+
+        std::this_thread::sleep_for(chrono::seconds(2));
         plays->showSpaces(select_eloadas.spaces);
 
     }catch(string s){

@@ -7,16 +7,25 @@ Admin::Admin(Plays * plays, GuestBook *GBook):plays(plays),GBook(GBook)
 }
 
 void Admin::checkReviews() {
-	system(CLEAR);
+try{
     unsigned i=0;
     auto reviews=GBook->getReviews();
+    //ha nincs ellenorizendo velemeny azt le kell kezelni
+    bool allchecked=true;
+    for(auto review:reviews){
+        if(!review.getChecked())
+            allchecked=false;
+    }
+    if(allchecked)
+        throw string("nincs uj bejegyzes/velemeny");
+
     for(auto review:reviews){
         if(review.getChecked()==false){
         cout<<++i<<".)"<<endl;
             review.print();
             cout<<endl;
         }
-        }
+    }
 
     cout<<"valassza ki a engedelyezendo velemenyt"<<endl;
 
@@ -34,8 +43,9 @@ void Admin::checkReviews() {
 
     it->setChecked(true);
 
-
-
+    }catch(string s){
+            cout<<s<<endl;
+    }
 }
 
 void Admin::addPlay() {
@@ -154,7 +164,7 @@ void Admin::addEloadas()
 
     string tmp3;
 
-    auto &play = plays->getPair();
+    auto play = plays->getPair();
 
     tmp.nev=play.first.getName();
 

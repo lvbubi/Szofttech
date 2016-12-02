@@ -4,6 +4,8 @@
 #include "Plays.h"
 #include "Payment.h"
 #include "C_Datas.h"
+#include <chrono>
+#include <thread>
 class Customer {
 
 private:
