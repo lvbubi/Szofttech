@@ -22,6 +22,7 @@ public:
 	void removePlay();
 
 	void editPlay();
+    bool start();
 
 	void start();
 
