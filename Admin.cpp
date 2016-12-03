@@ -158,15 +158,16 @@ void Admin::addEloadas()
 {
     Eloadas tmp;
 
-    int date;
+    string date;
+	string tmp3;
     int row;
     int col;
 
-    string tmp3;
+    auto &par = plays->getPair();
 
-    auto play = plays->getPair();
+    tmp.nev=par.first.getName();
 
-    tmp.nev=play.first.getName();
+	cout<<par.second;
 
     cout << "New eloadas keszitese" << endl;
     cout << "-------------------" << endl;
@@ -178,17 +179,24 @@ void Admin::addEloadas()
     cout << "Row: ";
     cin >> row;
 
+	tmp.date = date;
     tmp.spaces=vector<vector<int>>(row,vector<int>(col,1));
 
-    play.second.push_back(tmp);
-
-
+	tmp.free_spaces = col*row;
+	tmp.sold_spaces = 0;
+	for (auto &it : *plays)
+		if (it.first.getName() == par.first.getName()) {
+			it.second.push_back(tmp);
+			break;
+		}
+	cout << tmp;
+   
 
 }
 
 void Admin::start()
 {
-	string menu[] = { "Check Reviews","Szindarab hozzaadasa", "Szindarab m�dos�tasa","Szindarab torlese","Eloadas hozzaadasa","Exit" };
+	string menu[] = { "Check Reviews","Szindarab hozzaadasa", "Szindarab modositasa","Szindarab torlese","Eloadas hozzaadasa","Exit" };
 	bool exit = false;
 	string select_menu;
 	int i = 1;
@@ -201,12 +209,13 @@ void Admin::start()
 		system(CLEAR);
 		switch (select_menu[0] - '0') {
 		case 1:checkReviews(); break;
-		case 2:addPlay(); break;//kezeld le mikor l�tez� szindarabot adn�l hozz� (ugyan az a n�v ne lehessen)
+		case 2:addPlay(); break;
 		case 3:editPlay(); break;
 		case 4:removePlay(); break;
-		case 5:break;//add eloadas
+		case 5:addEloadas(); break;//add eloadas
 		case 6:exit = true; break;
 		}
+		system(CLEAR);
 	} while (!exit);
 }
 

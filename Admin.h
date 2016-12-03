@@ -23,6 +23,8 @@ public:
 
 	void editPlay();
 
+	void addEloadas();
+
 	void start();
 
 };
