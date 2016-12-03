@@ -57,7 +57,7 @@ void Director::showStatictics()const  {
 
 void Director::listPlaysBy(const mode &_mode) {
 
-	auto it = plays->begin();
+
     vector<Play>e;
     for(const auto &par:*plays)
         e.push_back(par.first);

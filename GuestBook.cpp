@@ -65,7 +65,7 @@ void GuestBook::addReview(const string &name, const string &label, const string 
 
 GuestBook::~GuestBook()
 {
-	ofstream output("kimenet.txt");
+    ofstream output("guestbook.txt");
 	if (output.is_open()) {
 		for (auto &review : reviews) {
 			if (review.getChecked())
