@@ -52,7 +52,7 @@ void Director::showStatictics()const {
 		system(CLEAR);
 		//az idoponthoz tartozo statisztikai adatok megjelenitese
 		cout << "cost: " << akt->getCost() / par.second.size() << " Ft";
-		cout << " income: " << it->free_spaces*akt->getPrice() << " Ft";
+        cout << " income: " << it->sold_spaces*akt->getPrice() << " Ft";
 		cout << " price: " << akt->getPrice() << " Ft" << endl << endl;
 
 
@@ -71,7 +71,7 @@ void Director::listPlaysBy(const mode &_mode) {
             return ((a.getIncome()-a.getCost()) < (b.getIncome()-b.getCost()));};
             std::sort(e.begin(),e.end(),compare);
             for(auto eloadas:e){
-                cout<<eloadas.getName()<<" profit: "<<eloadas.getIncome()-eloadas.getCost()<<" Ft"<<endl<<endl;
+                cout<<eloadas.getName()<<" profit: "<<(eloadas.getIncome()-eloadas.getCost())<<" Ft"<<endl<<endl;
             }
             break;
 

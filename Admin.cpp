@@ -178,7 +178,7 @@ void Admin::addEloadas()
     cin >> col;
     cout << "Row: ";
     cin >> row;
-
+    date+="\n";
 	tmp.date = date;
     tmp.spaces=vector<vector<int>>(row,vector<int>(col,1));
 
