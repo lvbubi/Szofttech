@@ -163,7 +163,7 @@ void Admin::addEloadas()
     int row;
     int col;
 
-    auto &par = plays->getPair();
+    auto par = plays->getPair();
 
     tmp.nev=par.first.getName();
 

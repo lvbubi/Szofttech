@@ -4,7 +4,7 @@
 #include "Director.h"
 #include <thread>
 #include <chrono>
-#include <Windows.h>
+//#include <Windows.h>
 #pragma comment(lib, "Winmm.lib")
 using namespace std;
 
@@ -36,11 +36,17 @@ int main()
 	while (!exit) {
 		switch (select_menu[0]-'0') {
 		case 9:
-			admin.start();
+			cout << "Jelszo: ";
+			cin >> select_menu;
+			if(select_menu=="admin")
+				admin.start();
 			exit = true;
 			break;
 		case 8:
-			director.start();
+			cout << "Jelszo: ";
+			cin >> select_menu;
+			if (select_menu == "director")
+				director.start();
 			exit = true;
 			break;
 		default:
