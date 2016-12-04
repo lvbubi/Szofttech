@@ -67,13 +67,25 @@ GuestBook::~GuestBook()
 {
     ofstream output("guestbook.txt");
 	if (output.is_open()) {
+		string name;
+		string label;
+		string comment;
 		for (auto &review : reviews) {
+			name = review.getName();
+			name.erase(name.find_first_not_of(" \n\r\t") + 1);
+
+			label = review.getLabel();
+			label.erase(label.find_first_not_of(" \n\r\t") + 1);
+
+			comment = review.getComment();
+			comment.erase(comment.find_first_not_of(" \n\r\t") + 1);
+
 			if (review.getChecked())
 				output<<"checked\n";
 			else output << "unchecked\n";
-			output << review.getName()+"\n";
-			output << review.getLabel() + "\n";
-			output << review.getComment();
+			output << name+"\n";
+			output << label + "\n";
+			output << comment;
 			output << "*\n";
 		}
 		output << '#';
