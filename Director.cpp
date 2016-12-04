@@ -18,43 +18,47 @@ void Director::showAllStatistics() const
 }
 
 
-void Director::showStatictics()const  {
+void Director::showStatictics()const {
 
-    //a kiválasztott elõadás statisztikai adatainak megtekintése
-    //a rendszer megejeleníti az elõadás nevét és idõpontjait
+	//a kiválasztott elõadás statisztikai adatainak megtekintése
+	//a rendszer megejeleníti az elõadás nevét és idõpontjait
 
 	auto par = plays->getPair();
 	const Play * akt = &par.first;       //a const miatt kell a const(szindarab kivalasztva)
+	if (par.second.size() > 0) {
+		cout << akt->getName() << " idpontjai: " << endl;            //majd megjelenítjük
+		auto it = par.second.begin();
+		int i = 1;
+		while (it != par.second.end()) {
+			cout << i++ << ".)";
+			cout << it->date << endl;
+			it++;
+		}
+		//az igazgato kivalaszt egy idopontot
+		unsigned idx;
 
-    cout<<akt->getName()<<" idpontjai: "<<endl;            //majd megjelenítjük
-    auto it=par.second.begin();
-    int i=1;
-    while(it!=par.second.end()){
-        cout<<i++<<".)";
-        cout<<it->date<<endl;
-        it++;
-    }
-    //az igazgato kivalaszt egy idopontot
-    unsigned idx;
+		cout << "Adjon egy indexet: ";
+		cin >> idx;
+		//4.1 és 4.2
+		while (idx > par.second.size()) {
+			cout << "hibas index/datum, probalja ujra: ";
+			cin >> idx;
+		}
+		it = par.second.begin();
 
-    cout<<"Adjon egy indexet: ";
-    cin>>idx;
-    //4.1 és 4.2
-    while(idx>par.second.size()){
-        cout<<"hibas index/datum, probalja ujra: ";
-        cin>>idx;
-    }
-    it=par.second.begin();
+		for (unsigned int i = 1; i < idx; i++) {
+			it++;
+		}
+		system(CLEAR);
+		//az idoponthoz tartozo statisztikai adatok megjelenitese
+		cout << "cost: " << akt->getCost() / par.second.size() << " Ft";
+		cout << " income: " << it->free_spaces*akt->getPrice() << " Ft";
+		cout << " price: " << akt->getPrice() << " Ft" << endl << endl;
 
-    for(unsigned int i=1;i<idx;i++){
-        it++;
-    }
-    //az idoponthoz tartozo statisztikai adatok megjelenitese
-    cout<<"cost: "<<akt->getCost()/par.second.size()<<" Ft";
-    cout<<" income: "<<it->free_spaces*akt->getPrice()<<" Ft";
-    cout<<" price: "<<akt->getPrice()<<" Ft"<<endl<<endl;
+
+	}
+	else cout << "Nincsen eloadas a kivaslasztott szindarabhoz"<<endl;
 }
-
 void Director::listPlaysBy(const mode &_mode) {
 
 
@@ -113,13 +117,14 @@ bool Director::start()
                 cout<<i++<<".)"<<menupont<<endl;
             cout<<"choose: ";
             cin>>select;
+			system(CLEAR);
             switch(select){
             case 1:showAllStatistics();break;
             case 2:listPlaysBy(profit);break;
             case 3:listPlaysBy(bevetel);break;
             case 4:listPlaysBy(ar);break;
             }
-
+			break;
         case 3:cout<<"Viszontlatasra, szep napot!"<<endl;
             finished=true;break;
         }

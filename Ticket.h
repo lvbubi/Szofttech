@@ -1,32 +1,20 @@
 #ifndef TICKET_H
 #define TICKET_H
+#include <fstream>
 #include <string>
 using namespace std;
 class Ticket {
 
 private:
     int price;
-    int row;
-    int column;
+	pair<int, int> place;
 	string nev;
     string date;
-
-
+	string szindarab;
+	static ofstream kimenet;
 public:
 	Ticket();
-    Ticket(int row, int column ,string nev, string date);
-	int getPrice();
-
-	void setPrice(int price);
-
-
-
-	void setRow(int row);
-
-
-
-	void setColumn(int column);
-
+    Ticket(const pair<int,int> &place, int price , string szindarab,string nev, string date);
 
 };
 #endif //TICKET_H

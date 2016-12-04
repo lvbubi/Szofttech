@@ -3,16 +3,17 @@
 
 void Customer::buyTicket() {
     try{
+		list<pair<int, int>> lefoglalt_helyek;
 		auto &szindarab = plays->getPlay();
-		auto pair = plays->begin();
+		auto par = plays->begin();
 
-		for (; pair->first.getName() != szindarab.getName(); pair++);//léptetés amíg a lekért elõadásig nem jutunk
+		for (; par->first.getName() != szindarab.getName(); par++);//léptetés amíg a lekért elõadásig nem jutunk
 
 		
-		if(pair->second.size()==0)
+		if(par->second.size()==0)
 			throw string(szindarab.getName()+" nevu szindarabhoz nincsen eloadas.");
 
-        auto &select_eloadas=plays->getEloadas(pair->second);
+        auto &select_eloadas=plays->getEloadas(par->second);
         if(select_eloadas.free_spaces==0)
             throw string("Nincs szabad hely erre az eloadasra");
         //helyek megjelenítése
@@ -43,6 +44,8 @@ void Customer::buyTicket() {
 				if(column < select_eloadas.spaces[row].size() && terem[row][column]!=0){
 					terem[row][column]=0;
 					osszeg+=szindarab.getPrice();
+
+					lefoglalt_helyek.push_back(pair<int, int>(row,column));
 					plays->showSpaces(terem);
 				}
 				else
@@ -50,7 +53,7 @@ void Customer::buyTicket() {
             }
         }while(row>0);//kilépési feltétel
         //adatok bekerese
-
+		system(CLEAR);
         string name;
         string birthDate;
         string account_number;
@@ -63,21 +66,19 @@ void Customer::buyTicket() {
         cin>>account_number;
         cout<<endl<<"jelszo: ";
         cin>>password;
-        C_Datas customerId(name,birthDate,account_number,password);
-        if(fizetes.Pay(customerId,osszeg))
-            select_eloadas.spaces=terem;
 
+		if (fizetes.Pay(C_Datas(name, birthDate, account_number, password), osszeg)) {
+			select_eloadas.spaces = terem;
+			for (const auto &lefogalt_hely : lefoglalt_helyek)
+				Ticket(lefogalt_hely, szindarab.getPrice(), szindarab.getName(), name, select_eloadas.date);
+		}
 
-        std::this_thread::sleep_for(chrono::seconds(2));
+		std::this_thread::sleep_for(chrono::seconds(2));
         plays->showSpaces(select_eloadas.spaces);
 
     }catch(string s){
         cout<<s<<endl;
     }
-
-	int osszeg;
-	cin >> osszeg;
-
 }
 
 Customer::Customer(Plays *plays, GuestBook *GBook, Payment & payment):plays(plays),GBook(GBook),fizetes(payment)
@@ -109,7 +110,7 @@ bool Customer::start()
         int i=1;
         cout<<endl;
         for(string menupont:customer_menu)
-            cout<<i++<<".)"<<menupont<<endl;
+            cout<<i++<<".) "<<menupont<<endl;
         cout<<"choose: ";
         cin>>select;
 		system(CLEAR);
@@ -139,6 +140,7 @@ bool Customer::start()
             break;
         case 3: finished=true;break;
         }
+		system(CLEAR);
 
     }
 

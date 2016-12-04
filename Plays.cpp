@@ -175,7 +175,7 @@ ostream & operator<<(ostream & os, const Play & play)
 {
 	os << Colorize::greenBold(("Name: ")) << Colorize::redBold(play.getName()) << " "
 		<< Colorize::greenBold(("Price: ")) << Colorize::redBold(play.getPrice()) << " "
-		<< Colorize::greenBold(("Short Describtion: ")) << Colorize::yellowBold(play.getData()) << endl;
+		<< Colorize::greenBold(("\nShort Describtion: ")) << Colorize::yellowBold(play.getData()) << endl<<endl;
 	return os;
 }
 
